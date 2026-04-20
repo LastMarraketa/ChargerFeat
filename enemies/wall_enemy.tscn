@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cjxh0blecs0ap"]
+
+[ext_resource type="PackedScene" uid="uid://2bnx4ammfgl8" path="res://enemies/enemy.tscn" id="1_nmu78"]
+[ext_resource type="Script" uid="uid://c8ov7ejh24jfu" path="res://enemies/wall_enemy.gd" id="2_l0uy3"]
+
+[node name="WallEnemy" unique_id=1615866232 instance=ExtResource("1_nmu78")]
+script = ExtResource("2_l0uy3")
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot" parent_id_path=PackedInt32Array(1758106683) index="1" unique_id=715659792]
+position = Vector2(25, 0)
+target_position = Vector2(40, 0)

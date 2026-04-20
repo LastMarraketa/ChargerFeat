@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cup87llacob88"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_a202f"]
+sky_material = SubResource("ProceduralSkyMaterial_4xowi")
+
+[sub_resource type="Environment" id="Environment_noarx"]
+background_mode = 2
+sky = SubResource("Sky_a202f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_4xowi"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.09348345, 0.1687845, -0.14158544, 0, 0, 0, 0, 0, 0, -0.9339118, 1.6356747, -3.1568956),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Node3D" type="Node3D" unique_id=705414178]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1942928478]
+environment = SubResource("Environment_noarx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=611169915]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=540390112]
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1337507903]
+transform = Transform3D(0.42252338, 0, -0.90635204, 0, 1, 0, 0.90635204, 0, 0.42252338, 0, 0, 0)
+curve = SubResource("Curve3D_4xowi")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=710763105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.2270904)

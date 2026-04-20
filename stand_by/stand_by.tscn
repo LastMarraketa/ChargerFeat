@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://jc8li7siyq28"]
+
+[ext_resource type="Script" uid="uid://blc2n0fagbbtn" path="res://stand_by/stand_by.gd" id="1_4d0vx"]
+[ext_resource type="PackedScene" uid="uid://8j3e2672q8pu" path="res://stand_by/stand_by_sprite.tscn" id="2_4d0vx"]
+
+[node name="StandBy" type="Node2D" unique_id=200083644]
+script = ExtResource("1_4d0vx")
+stand_by_sprite_scene = ExtResource("2_4d0vx")
+
+[node name="StandBySprite" parent="." unique_id=55753505 instance=ExtResource("2_4d0vx")]
+position = Vector2(224, 274)

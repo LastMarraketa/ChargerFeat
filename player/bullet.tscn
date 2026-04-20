@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cgaajelvhc4yy"]
+
+[ext_resource type="Script" uid="uid://c014pw6ho0hxd" path="res://player/bullet.gd" id="1_j40gx"]
+[ext_resource type="Texture2D" uid="uid://dki0qrnh46vy0" path="res://icon.svg" id="2_boyjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boyjm"]
+size = Vector2(46, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j40gx"]
+size = Vector2(102.59947, 0.09154643)
+
+[node name="Bullet" type="Area2D" unique_id=1444335018]
+scale = Vector2(4.476344, -0.54060185)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_j40gx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=954639565]
+rotation = 1.5707964
+scale = Vector2(0.115, 0.32)
+texture = ExtResource("2_boyjm")
+
+[node name="Timer" type="Timer" parent="." unique_id=1545028940]
+one_shot = true
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1228320393]
+scale = Vector2(0.9999998, 0.9999998)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1475397814]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_boyjm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=169705363]
+position = Vector2(-0.67018974, 0.9248937)
+rotation = 3.1415925
+scale = Vector2(0.4572468, -303.0904)
+shape = SubResource("RectangleShape2D_j40gx")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1541695190]
+position = Vector2(22.786451, 3.8146973e-06)
+target_position = Vector2(20, 0)

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://8j3e2672q8pu"]
+
+[ext_resource type="Texture2D" uid="uid://bwk0mgo4wk1nf" path="res://assets/sprites/a.jpg" id="1_jnvgn"]
+[ext_resource type="Script" uid="uid://b38h1y2onnatx" path="res://stand_by/stand_by_sprite.gd" id="2_76osw"]
+
+[node name="StandBySprite" type="Sprite2D" unique_id=55753505]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_jnvgn")
+script = ExtResource("2_76osw")

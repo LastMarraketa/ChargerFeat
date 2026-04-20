@@ -1,0 +1,26 @@
+[gd_scene format=4 uid="uid://dow0bv7ac0spj"]
+
+[ext_resource type="TileSet" uid="uid://bavl0y60ngm1k" path="res://levels/tile_set.tres" id="1_mi4ay"]
+[ext_resource type="PackedScene" uid="uid://dc1g2sfbw4xhv" path="res://player/player.tscn" id="2_pqqg8"]
+[ext_resource type="PackedScene" uid="uid://bb17db381bnli" path="res://ui/pause_menu.tscn" id="3_0srwa"]
+[ext_resource type="PackedScene" uid="uid://stdfajjojk45" path="res://gameplay/goal.tscn" id="4_v5uil"]
+[ext_resource type="PackedScene" uid="uid://dsenkcn2o2beu" path="res://ui/hud.tscn" id="5_5722l"]
+
+[node name="Level2" type="Node2D" unique_id=1046795863]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1703618807]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAGABAAAAADAAMAAAAFABAAAAACAAMAAAAEABAAAAACAAMAAAADABAAAAACAAMAAAACABAAAAACAAMAAAABABAAAAACAAMAAAAAABAAAAABAAMAAAALAA4AAAADAAMAAAAKAA4AAAACAAMAAAAJAA4AAAACAAMAAAAIAA4AAAACAAMAAAAHAA4AAAABAAMAAAARAAwAAAADAAMAAAAQAAwAAAACAAMAAAAPAAwAAAACAAMAAAAOAAwAAAABAAMAAAAgAAoAAAADAAMAAAAfAAoAAAACAAMAAAAeAAoAAAACAAMAAAAdAAoAAAACAAMAAAAcAAoAAAACAAMAAAAbAAoAAAACAAMAAAAaAAoAAAACAAMAAAAZAAoAAAACAAMAAAAYAAoAAAACAAMAAAAXAAoAAAACAAMAAAAWAAoAAAACAAMAAAAVAAoAAAACAAMAAAAUAAoAAAABAAMAAAA=")
+tile_set = ExtResource("1_mi4ay")
+
+[node name="Goal" parent="." unique_id=48422927 instance=ExtResource("4_v5uil")]
+position = Vector2(2020, 516)
+
+[node name="Player" parent="." unique_id=111671453 instance=ExtResource("2_pqqg8")]
+position = Vector2(111, 909)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1411454273]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1750061234 instance=ExtResource("3_0srwa")]
+
+[node name="HUD" parent="." unique_id=1648690276 instance=ExtResource("5_5722l")]

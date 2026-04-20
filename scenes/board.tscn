@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://2jiswx6h81cl"]
+
+[ext_resource type="Script" uid="uid://0l6001x2iqqn" path="res://scenes/board.gd" id="1_bw3vb"]
+[ext_resource type="PackedScene" uid="uid://b5rm2gqaob65s" path="res://scenes/tile.tscn" id="2_tx6nw"]
+
+[node name="Board" type="Control" unique_id=972270279]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bw3vb")
+tile_scene = ExtResource("2_tx6nw")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1879462764]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
+
+[node name="Panel" type="Panel" parent="." unique_id=1130457397]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 410.0
+offset_right = 1006.0
+offset_bottom = 555.0
+
+[node name="Panel2" type="Panel" parent="." unique_id=1257703239]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 143.0
+offset_right = 990.0
+offset_bottom = 288.0

@@ -1,0 +1,72 @@
+[gd_scene format=4 uid="uid://l5mq12bpttw5"]
+
+[ext_resource type="Script" uid="uid://73gnung8y32p" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dki0qrnh46vy0" path="res://icon.svg" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dnsssi48vuhe8" path="res://ball.tscn" id="2_0xm2m"]
+[ext_resource type="TileSet" uid="uid://bavl0y60ngm1k" path="res://levels/tile_set.tres" id="2_kek77"]
+[ext_resource type="PackedScene" uid="uid://dc1g2sfbw4xhv" path="res://player/player.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bb17db381bnli" path="res://ui/pause_menu.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://2bnx4ammfgl8" path="res://enemies/enemy.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://do0uxj2hjvdsi" path="res://enemies/npc.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://cgaajelvhc4yy" path="res://player/bullet.tscn" id="8_5vw27"]
+
+[node name="Main" type="Node2D" unique_id=867226126]
+script = ExtResource("1_1bvp3")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1963556987]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAARAAkAAAADAAMAAAAQAAkAAAACAAMAAAAPAAkAAAACAAMAAAAOAAkAAAACAAMAAAANAAkAAAACAAMAAAAMAAkAAAACAAMAAAALAAkAAAACAAMAAAAKAAkAAAACAAMAAAAJAAkAAAACAAMAAAAIAAkAAAACAAMAAAAHAAkAAAACAAMAAAAGAAkAAAACAAMAAAAFAAkAAAACAAMAAAAEAAkAAAACAAMAAAADAAkAAAACAAMAAAACAAkAAAACAAMAAAABAAkAAAACAAMAAAAAAAkAAAABAAMAAAA=")
+tile_set = ExtResource("2_kek77")
+
+[node name="Player" parent="." unique_id=111671453 instance=ExtResource("3_h2yge")]
+z_index = 100
+position = Vector2(508, 313)
+scale = Vector2(1.0571793, 1.203636)
+
+[node name="Ball" parent="." unique_id=903449987 instance=ExtResource("2_0xm2m")]
+position = Vector2(-2068, -1)
+
+[node name="Ball2" parent="." unique_id=1980400453 instance=ExtResource("2_0xm2m")]
+position = Vector2(-1317, -263)
+
+[node name="Ball3" parent="." unique_id=685290580 instance=ExtResource("2_0xm2m")]
+position = Vector2(-1190, -469)
+
+[node name="Ball4" parent="." unique_id=508441137 instance=ExtResource("2_0xm2m")]
+position = Vector2(-1769, -176)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=103799084]
+position = Vector2(-551, -137)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=850947101]
+position = Vector2(-77, 517)
+polygon = PackedVector2Array(-45, -28, 0, -148, 72, -141, 109, 53, 24, 69, 29, 17)
+
+[node name="Icon" type="Sprite2D" parent="Area2D" unique_id=805577434]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(-66, 466)
+rotation = 3.0936778
+scale = Vector2(1, 2.7391014)
+texture = ExtResource("1_ig7tw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=725418714]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1750061234 instance=ExtResource("5_lquwl")]
+visible = false
+size_flags_vertical = 3
+
+[node name="Enemy" parent="." unique_id=1615866232 instance=ExtResource("6_7mycd")]
+position = Vector2(1022, 119)
+
+[node name="NPC" parent="." unique_id=1473082802 instance=ExtResource("7_272bh")]
+position = Vector2(166, 415)
+
+[node name="Bullet" parent="." unique_id=237174888 instance=ExtResource("8_5vw27")]
+position = Vector2(105, 87)
+
+[node name="Bullet2" parent="." unique_id=1864011132 instance=ExtResource("8_5vw27")]
+position = Vector2(288, 130)
+
+[node name="Bullet3" parent="." unique_id=440361729 instance=ExtResource("8_5vw27")]
+position = Vector2(221, 2)
+rotation = 0.7271748

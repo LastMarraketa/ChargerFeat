@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://stdfajjojk45"]
+
+[ext_resource type="Texture2D" uid="uid://bfdl7flwd2au" path="res://assets/sprites/Dungeon Gathering Free Version/Torch Yellow.png" id="1_8tq3u"]
+[ext_resource type="Script" uid="uid://cpj1narn0obsl" path="res://gameplay/goal.gd" id="1_t8vge"]
+[ext_resource type="AudioStream" uid="uid://2s4kbo6c4dit" path="res://assets/audio/eaglaxle-gaming-victory-464016.mp3" id="2_jo1fa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tq3u"]
+size = Vector2(68, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8vge"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo1fa"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i20c"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5jjd"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj0wq"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug0ii"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p4gj"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvf6b"]
+atlas = ExtResource("1_8tq3u")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcr3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8vge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo1fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i20c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5jjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj0wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug0ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p4gj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvf6b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Goal" type="Area2D" unique_id=48422927]
+script = ExtResource("1_t8vge")
+sfx = ExtResource("2_jo1fa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1038383533]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_8tq3u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1296479901]
+position = Vector2(0, -28)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_jcr3d")
+frame_progress = 0.11092893

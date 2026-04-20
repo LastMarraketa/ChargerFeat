@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://xt024upu0sv7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_03k8r"]
+friction = 0.1
+bounce = 0.9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dmk33"]
+radius = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ejuop"]
+radius = 2.0
+height = 4.0
+
+[node name="Ball3D" type="RigidBody3D" unique_id=1568105878]
+physics_material_override = SubResource("PhysicsMaterial_03k8r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=376300079]
+shape = SubResource("SphereShape3D_dmk33")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1422701766]
+mesh = SubResource("SphereMesh_ejuop")

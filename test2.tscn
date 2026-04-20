@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cxlivt862hc86"]
+
+[ext_resource type="Texture2D" uid="uid://3krkey2jy2rm" path="res://assets/sprites/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 1.png" id="1_vfvc6"]
+
+[node name="Node2D" type="Node2D" unique_id=544905006]
+
+[node name="Attack1" type="Sprite2D" parent="." unique_id=327451741]
+position = Vector2(46, 33)
+rotation = -0.28547573
+texture = ExtResource("1_vfvc6")
+hframes = 7

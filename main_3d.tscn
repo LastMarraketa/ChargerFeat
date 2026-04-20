@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cle18bg0jqdyy"]
+
+[ext_resource type="PackedScene" uid="uid://xt024upu0sv7" path="res://ball_3d.tscn" id="1_wiwsh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wiwsh"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_pt58c"]
+sky_material = SubResource("ProceduralSkyMaterial_wiwsh")
+
+[sub_resource type="Environment" id="Environment_ndnd3"]
+background_mode = 2
+sky = SubResource("Sky_pt58c")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pt58c"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ndnd3"]
+size = Vector3(100, 1, 100)
+
+[node name="Main3D" type="Node3D" unique_id=1263697649]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=608723452]
+environment = SubResource("Environment_ndnd3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1188370381]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1469549170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.326309, 22.099068)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=274936700]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1803505887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.284912)
+shape = SubResource("BoxShape3D_pt58c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1745225532]
+mesh = SubResource("BoxMesh_ndnd3")
+
+[node name="Ball3D" parent="." unique_id=1568105878 instance=ExtResource("1_wiwsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5627985, 7.0722537, 4.7049904)
+
+[node name="Ball3D2" parent="." unique_id=1680619895 instance=ExtResource("1_wiwsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9625363, 12.955601, -1.6141872)
+
+[node name="Ball3D3" parent="." unique_id=755878472 instance=ExtResource("1_wiwsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7431359, 7.0722537, -0.55698204)
+
+[node name="Ball3D4" parent="." unique_id=2127701160 instance=ExtResource("1_wiwsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0956755, 18.332874, 0)
+
+[node name="Ball3D5" parent="." unique_id=23661001 instance=ExtResource("1_wiwsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5805645, 0)

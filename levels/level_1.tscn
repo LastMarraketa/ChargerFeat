@@ -1,0 +1,36 @@
+[gd_scene format=4 uid="uid://ysxmx7ksrswb"]
+
+[ext_resource type="Script" uid="uid://qihve14j1kep" path="res://levels/level_1.gd" id="1_l53as"]
+[ext_resource type="TileSet" uid="uid://bavl0y60ngm1k" path="res://levels/tile_set.tres" id="1_vn7o3"]
+[ext_resource type="PackedScene" uid="uid://dc1g2sfbw4xhv" path="res://player/player.tscn" id="2_jirdo"]
+[ext_resource type="PackedScene" uid="uid://bb17db381bnli" path="res://ui/pause_menu.tscn" id="3_bt44k"]
+[ext_resource type="PackedScene" uid="uid://dsenkcn2o2beu" path="res://ui/hud.tscn" id="5_n46q3"]
+[ext_resource type="PackedScene" uid="uid://stdfajjojk45" path="res://gameplay/goal.tscn" id="6_btoec"]
+[ext_resource type="PackedScene" uid="uid://bbg3tyfgxrujp" path="res://enemies/floor_enemy.tscn" id="6_gwceb"]
+[ext_resource type="PackedScene" uid="uid://cjxh0blecs0ap" path="res://enemies/wall_enemy.tscn" id="7_l53as"]
+
+[node name="Level1" type="Node2D" unique_id=1046795863]
+script = ExtResource("1_l53as")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1703618807]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAA0ABAAAAADAAMAAAAzABAAAAACAAMAAAAyABAAAAACAAMAAAAxABAAAAACAAMAAAAwABAAAAACAAMAAAAvABAAAAACAAMAAAAuABAAAAACAAMAAAAtABAAAAACAAMAAAAsABAAAAACAAMAAAArABAAAAACAAMAAAAqABAAAAACAAMAAAApABAAAAACAAMAAAAoABAAAAACAAMAAAAnABAAAAACAAMAAAAmABAAAAACAAMAAAAlABAAAAACAAMAAAAkABAAAAACAAMAAAAjABAAAAACAAMAAAAiABAAAAACAAMAAAAhABAAAAACAAMAAAAgABAAAAACAAMAAAAfABAAAAACAAMAAAAeABAAAAACAAMAAAAdABAAAAACAAMAAAAcABAAAAACAAMAAAAbABAAAAACAAMAAAAaABAAAAACAAMAAAAZABAAAAACAAMAAAAYABAAAAACAAMAAAAXABAAAAACAAMAAAAWABAAAAACAAMAAAAVABAAAAACAAMAAAAUABAAAAACAAMAAAATABAAAAACAAMAAAASABAAAAACAAMAAAARABAAAAACAAMAAAAQABAAAAACAAMAAAAPABAAAAACAAMAAAAEABAAAAACAAMAAAADABAAAAACAAMAAAACABAAAAACAAMAAAABABAAAAACAAMAAAAAABAAAAACAAMAAAAFABAAAAACAAMAAAAGABAAAAACAAMAAAAHABAAAAACAAMAAAAIABAAAAADAAMAAAAJABAAAAAAAAIAAAAOABAAAAABAAMAAAADAA4AAQAAAAAAAQAGAA0AAQAAAAAAAQAPAA4AAQAAAAAAAQAQAA4AAQAAAAAAAQARAA4AAQAAAAAAAQASAA4AAQAAAAAAAQATAA4AAQAAAAAAAQAZAA0AAQAAAAAAAQD//xAAAAACAAMAAAD+/xAAAAACAAMAAAD9/xAAAAACAAMAAAD8/xAAAAACAAMAAAD7/xAAAAACAAMAAAD6/xAAAAACAAMAAAD5/xAAAAAAAAIAAAD5/w4AAAAAAAAAAAD5/w8AAAAAAAEAAAAJAA4AAAAAAAAAAAAJAA8AAAAAAAEAAAD1/xAAAAACAAMAAAD0/xAAAAACAAMAAADz/xAAAAACAAMAAADy/xAAAAACAAMAAADx/xAAAAACAAMAAADw/xAAAAACAAMAAADv/xAAAAACAAMAAADu/xAAAAACAAMAAADt/xAAAAACAAMAAADs/xAAAAABAAMAAAD2/xAAAAADAAMAAADz/w0AAAABAAMAAAD0/w0AAAACAAMAAAD1/w0AAAADAAMAAAD+/wsAAAACAAMAAAD//wsAAAACAAMAAAAAAAsAAAACAAMAAAABAAsAAAADAAMAAAD+/woAAAACAAIAAAD//woAAAACAAIAAAAAAAoAAAACAAIAAAABAAoAAAACAAIAAAA=")
+tile_set = ExtResource("1_vn7o3")
+
+[node name="Goal" parent="." unique_id=48422927 instance=ExtResource("6_btoec")]
+position = Vector2(2627, 978)
+
+[node name="Player" parent="." unique_id=111671453 instance=ExtResource("2_jirdo")]
+position = Vector2(-412, 814)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1696878261]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1750061234 instance=ExtResource("3_bt44k")]
+
+[node name="HUD" parent="." unique_id=1648690276 instance=ExtResource("5_n46q3")]
+
+[node name="FloorEnemy" parent="." unique_id=1615866232 instance=ExtResource("6_gwceb")]
+position = Vector2(-700, 589)
+
+[node name="WallEnemy" parent="." unique_id=1035513402 instance=ExtResource("7_l53as")]
+position = Vector2(-241, 992)

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bbg3tyfgxrujp"]
+
+[ext_resource type="PackedScene" uid="uid://2bnx4ammfgl8" path="res://enemies/enemy.tscn" id="1_ei0jx"]
+[ext_resource type="Script" uid="uid://c021600urrqdq" path="res://enemies/floor_enemy.gd" id="2_h1smk"]
+[ext_resource type="Texture2D" uid="uid://dki0qrnh46vy0" path="res://icon.svg" id="3_phebi"]
+
+[node name="FloorEnemy" unique_id=1615866232 instance=ExtResource("1_ei0jx")]
+script = ExtResource("2_h1smk")
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot" parent_id_path=PackedInt32Array(1758106683) index="1" unique_id=295051641]
+position = Vector2(48, 17)
+target_position = Vector2(0, 30)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(1758106683) index="2" unique_id=270071957]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(33.000008, -10.999992)
+scale = Vector2(0.2421875, 0.2421875)
+texture = ExtResource("3_phebi")

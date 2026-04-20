@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://2bnx4ammfgl8"]
+
+[ext_resource type="Script" uid="uid://w7d07qartkhd" path="res://enemies/enemy.gd" id="1_orwns"]
+[ext_resource type="Texture2D" uid="uid://kcrstson0ogr" path="res://assets/sprites/Dungeon Gathering Free Version/Vase Shine Anim.png" id="2_a6vjd"]
+[ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="2_orwns"]
+[ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="4_a6vjd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_07tka"]
+radius = 34.132095
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07tka"]
+size = Vector2(76, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t1x0"]
+size = Vector2(44, 16)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1615866232]
+script = ExtResource("1_orwns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1981859268]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_07tka")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=308293288]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_orwns")
+metadata/_custom_type_script = "uid://d26yj0mh06tpn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=98891645]
+shape = SubResource("RectangleShape2D_07tka")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1681966307]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_a6vjd")
+metadata/_custom_type_script = "uid://bng1gwg0xgpto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=533011693]
+position = Vector2(1, -42)
+shape = SubResource("RectangleShape2D_3t1x0")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1758106683]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=1494521632]
+scale = Vector2(4, 4)
+texture = ExtResource("2_a6vjd")
+hframes = 16
+frame = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1956524116]

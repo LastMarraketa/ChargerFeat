@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cmk027i32vq0i"]
+
+[ext_resource type="Script" uid="uid://dw5kfcwfdxjpj" path="res://autoloads/audio_manager.gd" id="1_tr7pb"]
+[ext_resource type="AudioStream" uid="uid://dwycqvpnda2dx" path="res://assets/audio/夜の砂漠.mp3" id="2_alnp1"]
+
+[node name="AudioManager" type="Node" unique_id=380180270]
+script = ExtResource("1_tr7pb")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=619054592]
+stream = ExtResource("2_alnp1")
+bus = &"Music"
