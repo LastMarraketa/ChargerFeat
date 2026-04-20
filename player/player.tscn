@@ -547,6 +547,7 @@ volume_db = -5.0
 bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=493082050]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=331286407]
 shape = SubResource("RectangleShape2D_2hs0m")

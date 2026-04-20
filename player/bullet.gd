@@ -52,8 +52,8 @@ func _pegarse(target: Node2D) -> void:
 	var rotacion_actual = global_rotation
 	
 	#Detenemos el monitoreo de colisiones para optimizar
-	set_deferred("monitoring", false)
-	set_deferred("monitorable", false)
+	#set_deferred("monitoring", false)
+	#set_deferred("monitorable", false)
 	
 	# Cambiamos el nodo padre de la bala al objeto al que se pegó para que se mueva con él  
 	get_parent().remove_child(self)
