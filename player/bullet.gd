@@ -69,3 +69,8 @@ func _pegarse(target: Node2D) -> void:
 	
 	#activo el terreno para que el jugador camine
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+	
+	#beta: desactivar Hurtbox de enemigo
+	if target is Enemy:
+		if target.has_method("_disable_shield"):
+			target._disable_shield()

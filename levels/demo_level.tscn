@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bb17db381bnli" path="res://ui/pause_menu.tscn" id="5_lih0g"]
 [ext_resource type="PackedScene" uid="uid://dsenkcn2o2beu" path="res://ui/hud.tscn" id="6_677m7"]
 [ext_resource type="PackedScene" uid="uid://pgu1mwgxemwm" path="res://gameplay/spear_upgrade.tscn" id="7_dvlyx"]
+[ext_resource type="PackedScene" uid="uid://bbg3tyfgxrujp" path="res://enemies/floor_enemy.tscn" id="9_rahni"]
+[ext_resource type="PackedScene" uid="uid://c8sc7b4ps28lp" path="res://enemies/shield_enemy.tscn" id="9_yy2pm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_on6n3"]
 resource_name = "Cave"
@@ -181,7 +183,7 @@ tile_set = ExtResource("2_a3way")
 position = Vector2(3843, 1704)
 
 [node name="Player" parent="." unique_id=111671453 instance=ExtResource("4_rahni")]
-position = Vector2(1666, 510)
+position = Vector2(1661, 540)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1061716762]
 
@@ -193,3 +195,9 @@ metadata/_edit_use_anchors_ = true
 [node name="SpearUpgrade" parent="." unique_id=490571833 instance=ExtResource("7_dvlyx")]
 position = Vector2(-1664, 3136)
 scale = Vector2(4, 4)
+
+[node name="FloorEnemy" parent="." unique_id=1686425892 instance=ExtResource("9_rahni")]
+position = Vector2(2562, 2208)
+
+[node name="ShieldEnemy" parent="." unique_id=1459963717 instance=ExtResource("9_yy2pm")]
+position = Vector2(-600, 3360)

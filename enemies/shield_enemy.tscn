@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c8sc7b4ps28lp"]
+
+[ext_resource type="Script" uid="uid://hxceoll685bp" path="res://enemies/shield_enemy.gd" id="1_7l25x"]
+[ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="1_h7e1y"]
+[ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="2_7l25x"]
+[ext_resource type="Texture2D" uid="uid://kcrstson0ogr" path="res://assets/sprites/Dungeon Gathering Free Version/Vase Shine Anim.png" id="3_s1lpq"]
+[ext_resource type="Texture2D" uid="uid://bpegceo0ygk1h" path="res://assets/sprites/Shield.png" id="5_7l25x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h7e1y"]
+radius = 34.132095
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l25x"]
+size = Vector2(76, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1lpq"]
+size = Vector2(76, 68)
+
+[node name="ShieldEnemy" type="CharacterBody2D" unique_id=756933499]
+script = ExtResource("1_7l25x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1329788474]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_h7e1y")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1412510868]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_h7e1y")
+metadata/_custom_type_script = "uid://d26yj0mh06tpn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=433475224]
+shape = SubResource("RectangleShape2D_7l25x")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1999005816]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=1259544748]
+scale = Vector2(4, 4)
+texture = ExtResource("3_s1lpq")
+hframes = 16
+frame = 4
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot" unique_id=592273879]
+position = Vector2(25, 0)
+target_position = Vector2(40, 0)
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=778644804]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_7l25x")
+metadata/_custom_type_script = "uid://bng1gwg0xgpto"
+
+[node name="Sprite2D" type="Sprite2D" parent="HitboxComponent" unique_id=389430266]
+modulate = Color(0.6039216, 0, 0, 0.8392157)
+position = Vector2(9.536743e-07, -2.000001)
+scale = Vector2(4.75, 4.25)
+texture = ExtResource("5_7l25x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2133852668]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_s1lpq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2133899787]
