@@ -13,6 +13,8 @@ var state = State.MOVE
 @export var acceleration = 300
 @onready var jump_timer: Timer = $JumpTimer
 @export var propulsion = 900 
+@export var has_bullet = true
+@export var has_spear = true
 
 #esta instancia es la raiz del sistema de disparo
 #se usa en la funcion fire(), la cual instancia el nodo bullet (la bala) en esta escena
@@ -27,6 +29,7 @@ var _was_on_floor: bool = false
 var ammo: bool = true
 var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
+
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -105,7 +108,7 @@ func _move(delta: float) -> void:
 	
 	
 	#proceso de teleportación hacia la bala
-	if Input.is_action_just_pressed("secondary_fire"): 
+	if has_spear and Input.is_action_just_pressed("secondary_fire"): 
 		if is_instance_valid(bala_viva):
 			global_position = bala_viva.global_position + Vector2(0, -60)
 			#si se quiere que se pare en seco (eliminar momentum) cada vez que se teleporte 
@@ -132,7 +135,7 @@ func _move(delta: float) -> void:
 	#si tiene municion y quiere disparar , dispara (y no hace nada más, la perdida de municion esta en fire() ) 
 	#si no tiene municion (ammo==false) y quiere disparar, elimina el terrenobala existente y recarga
 	
-	if not firing and Input.is_action_just_pressed("fire"):
+	if has_spear and not firing and Input.is_action_just_pressed("fire"):
 		if ammo==true:
 			animation_tree["parameters/fire/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			pivot.scale.x = sign(get_global_mouse_position().x - global_position.x)

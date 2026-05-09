@@ -493,10 +493,12 @@ size = Vector2(46, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=111671453]
 position = Vector2(3, 1)
+collision_layer = 129
 collision_mask = 17
 script = ExtResource("1_onrkg")
 jump_speed = 500
 acceleration = 1000
+has_spear = false
 bullet_scene = ExtResource("2_n7ghd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2015007523]

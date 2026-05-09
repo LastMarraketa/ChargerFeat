@@ -43,6 +43,11 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "this is fun"
 
+[node name="Demo" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1715431782]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play Demo"
+
 [node name="Start" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=516099098]
 unique_name_in_owner = true
 layout_mode = 2
