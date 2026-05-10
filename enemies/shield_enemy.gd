@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 		pivot.scale.x *= -1
 		
 func _disable_shield():
-	if shield_hitbox.disabled == false:
-		shield_hitbox.set_deferred("disabled", true)
-		shield_sprite.set_deferred("modulate", Color(1.0, 1.0, 1.0, 0.0))
-		Debug.log("Escudo deshabilitado")
+	shield_hitbox.set_deferred("disabled", true)
+	shield_sprite.set_deferred("modulate", Color(1.0, 1.0, 1.0, 0.0))
+	Debug.log("Escudo deshabilitado")

@@ -8,6 +8,7 @@ extends Area2D
 
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var mark: Marker2D = $Marker2D
 
 @export var speed: float = 2000.0 #velocidad de la bala
 var esta_pegado: bool = false  #variable de si esta pegado a algo, por defecto es falso
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	if ray_cast_2d.is_colliding():
 		var objeto = $RayCast2D.get_collider()
 		_pegarse(objeto)
+		ray_cast_2d.enabled = false
 	
 func _on_body_entered(body:Node2D)->void:
 	if body is Player or esta_pegado:
@@ -44,7 +46,8 @@ func _on_body_entered(body:Node2D)->void:
 	
 func _pegarse(target: Node2D) -> void:
 	#cambio el estado a True
-	esta_pegado = true 
+	esta_pegado = true
+	
 	
 	#guardo la info antes de pegarse para que no haga cosas raras al hacerse hijo de otros nodos
 	var escala_global_original = global_scale
@@ -58,6 +61,7 @@ func _pegarse(target: Node2D) -> void:
 	# Cambiamos el nodo padre de la bala al objeto al que se pegó para que se mueva con él  
 	get_parent().remove_child(self)
 	target.add_child(self)
+	target.get_parent().find_child("Player").target_marker = mark
 	
 	# luego actualizo las variables de la bala, para que se mantenga donde quedó y sepa en todo momento 
 	#si no actualizo la posicion, la bala muere al impactar
@@ -68,9 +72,12 @@ func _pegarse(target: Node2D) -> void:
 	global_scale = escala_global_original
 	
 	#activo el terreno para que el jugador camine
-	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+	#edit: movido abajo
+	#$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
 	
-	#beta: desactivar Hurtbox de enemigo
+	#beta: desactivar Hurtbox de enemigo, no volverse terreno
 	if target is Enemy:
 		if target.has_method("_disable_shield"):
 			target._disable_shield()
+	else:
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)

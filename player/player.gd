@@ -29,6 +29,7 @@ var _was_on_floor: bool = false
 var ammo: bool = true
 var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
+var moving = false
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -41,7 +42,7 @@ var gas: bool = false #para impulsarse en el aire
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_component: HealthComponent = $HealthComponent
-
+var target_marker: Marker2D = null
 
 
 func _ready() -> void:
@@ -54,7 +55,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		LevelManager.next_level()
-	
 
 
 func _physics_process(delta: float) -> void:
@@ -114,8 +114,18 @@ func _move(delta: float) -> void:
 			#si se quiere que se pare en seco (eliminar momentum) cada vez que se teleporte 
 			#entonces descomentar lo de abajo ->>
 			#velocity = Vector2.ZERO                       
-			Debug.log("¡Teletransporte!")                                    
+			Debug.log("¡Teletransporte!")   
 	
+	
+	if Input.is_action_just_pressed("move_toward"):
+		moving = not moving
+	#Proceso de movimiento hacia bala
+	if target_marker and moving:
+		var marker_direction = global_position.direction_to(target_marker.global_position)
+		velocity = marker_direction * 3 * speed
+		if global_position.distance_to(target_marker.global_position) < 70:
+			moving = false
+
 	var move_input = Input.get_axis("move_left", "move_right")
 	velocity.x = move_toward(velocity.x, move_input * speed, acceleration * delta)
 	
@@ -144,6 +154,8 @@ func _move(delta: float) -> void:
 				bala_viva.queue_free()
 			Debug.log("acabo de recargar")
 			ammo=true
+			target_marker = null
+			moving = false
 			
 #################################################################################
 #################################################################################
