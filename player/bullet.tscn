@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgaajelvhc4yy"]
 
 [ext_resource type="Script" uid="uid://c014pw6ho0hxd" path="res://player/bullet.gd" id="1_j40gx"]
-[ext_resource type="Texture2D" uid="uid://dki0qrnh46vy0" path="res://icon.svg" id="2_boyjm"]
+[ext_resource type="Texture2D" uid="uid://dq3pbh10vx55u" path="res://assets/sprites/Huntress/Sprites/Spear.png" id="2_j40gx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boyjm"]
 size = Vector2(46, 20)
@@ -16,9 +16,9 @@ collision_mask = 7
 script = ExtResource("1_j40gx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=954639565]
-rotation = 1.5707964
-scale = Vector2(0.115, 0.32)
-texture = ExtResource("2_boyjm")
+position = Vector2(-1.3403796, -1.8497925)
+scale = Vector2(1.1065023, 7.416342)
+texture = ExtResource("2_j40gx")
 
 [node name="Timer" type="Timer" parent="." unique_id=1545028940]
 one_shot = true

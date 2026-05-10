@@ -4,14 +4,16 @@
 [ext_resource type="Script" uid="uid://cr0enskeg8xbx" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bodurqkng7qww" path="res://assets/sprites/Knight 2D Pixel Art/Sprites/without_outline/IDLE.png" id="2_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://cgaajelvhc4yy" path="res://player/bullet.tscn" id="2_n7ghd"]
-[ext_resource type="Texture2D" uid="uid://0inp2w3nlw11" path="res://assets/sprites/Knight 2D Pixel Art/Sprites/without_outline/RUN.png" id="3_hqtel"]
-[ext_resource type="Texture2D" uid="uid://b8rb33hc0m3di" path="res://assets/sprites/Knight 2D Pixel Art/Sprites/without_outline/JUMP.png" id="3_sweqy"]
-[ext_resource type="Texture2D" uid="uid://3krkey2jy2rm" path="res://assets/sprites/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 1.png" id="4_b26j0"]
+[ext_resource type="Texture2D" uid="uid://bsfogd00kfa40" path="res://assets/sprites/Huntress/Sprites/Fall.png" id="4_yllr7"]
 [ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="5_1jxqw"]
-[ext_resource type="AudioStream" uid="uid://4gqfbpfpbosj" path="res://assets/audio/freesound_crunchpixstudio-bar-increase-cartoon-funny-jump-384919.mp3" id="6_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://3l133j5ow4qu" path="res://assets/sprites/Huntress/Sprites/Attack3.png" id="5_ebec5"]
+[ext_resource type="Texture2D" uid="uid://by7lorhsg1vnn" path="res://assets/sprites/Huntress/Sprites/Run.png" id="6_ebec5"]
+[ext_resource type="Texture2D" uid="uid://kj703m2qb40g" path="res://assets/sprites/Huntress/Sprites/Idle.png" id="6_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://crv60wcyg4hun" path="res://assets/sprites/Huntress/Sprites/Jump.png" id="6_yllr7"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bybf7gtnyux3s" path="res://player/movement.tres" id="7_nvl01"]
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="8_dw050"]
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="12_ebec5"]
+[ext_resource type="AudioStream" uid="uid://veweicylagko" path="res://dragon-studio-cartoon-jump-463196.mp3" id="12_kb6p2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 20.0
@@ -107,7 +109,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_sweqy")]
+"values": [ExtResource("4_yllr7")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -119,7 +121,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -131,36 +133,12 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2, 3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/Sprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 60)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/Sprite2D:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 1)]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_ivps1"]
 resource_name = "fire"
-length = 0.6
+length = 0.7
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -172,7 +150,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_b26j0")]
+"values": [ExtResource("5_ebec5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -184,7 +162,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [7]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -193,10 +171,10 @@ tracks/2/path = NodePath("Pivot/Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -205,7 +183,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -224,15 +202,15 @@ tracks/0/path = NodePath("Pivot/Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(2, 1.6), Vector2(2, 2)]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_2hs0m"]
 resource_name = "idle"
-length = 0.7
+length = 0.8
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -245,7 +223,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_i3pqv")]
+"values": [ExtResource("6_kb6p2")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -254,10 +232,10 @@ tracks/1/path = NodePath("Pivot/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -269,7 +247,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [8]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -287,7 +265,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_n7ghd"]
 resource_name = "jump"
 length = 0.2
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -299,7 +276,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_sweqy")]
+"values": [ExtResource("6_yllr7")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -311,7 +288,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -323,7 +300,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1, 2]
+"values": [0, 1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -364,7 +341,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_i3pqv")]
+"values": [ExtResource("6_kb6p2")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -376,7 +353,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [8]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -405,7 +382,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_1jxqw"]
 resource_name = "run"
-length = 0.8
+length = 0.7
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -418,7 +395,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_hqtel")]
+"values": [ExtResource("6_ebec5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -439,22 +416,10 @@ tracks/2/path = NodePath("Pivot/Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/Sprite2D:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dw050"]
@@ -475,8 +440,9 @@ animation = &"fire"
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ivps1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bwjto"]
+graph_offset = Vector2(-626.4473, 0)
 nodes/movement/node = ExtResource("7_nvl01")
-nodes/movement/position = Vector2(-448, 64)
+nodes/movement/position = Vector2(-440, 60)
 nodes/fire/node = SubResource("AnimationNodeOneShot_ivps1")
 nodes/fire/position = Vector2(-80, 112)
 "nodes/fire animation/node" = SubResource("AnimationNodeAnimation_urp6f")
@@ -544,7 +510,7 @@ position = Vector2(43, -5)
 gizmo_extents = 20.4
 
 [node name="JumpStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=761926419]
-stream = ExtResource("6_2hs0m")
+stream = ExtResource("12_kb6p2")
 volume_db = -5.0
 bus = &"SFX"
 
