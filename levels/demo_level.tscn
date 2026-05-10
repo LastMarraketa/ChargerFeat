@@ -183,7 +183,7 @@ tile_set = ExtResource("2_a3way")
 position = Vector2(3843, 1704)
 
 [node name="Player" parent="." unique_id=111671453 instance=ExtResource("4_rahni")]
-position = Vector2(1661, 540)
+position = Vector2(1660, 540)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1061716762]
 

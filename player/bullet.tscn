@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cgaajelvhc4yy"]
 
 [ext_resource type="Script" uid="uid://c014pw6ho0hxd" path="res://player/bullet.gd" id="1_j40gx"]
+
 [ext_resource type="Texture2D" uid="uid://dq3pbh10vx55u" path="res://assets/sprites/Huntress/Sprites/Spear.png" id="2_j40gx"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boyjm"]
 size = Vector2(46, 20)
@@ -44,3 +46,11 @@ shape = SubResource("RectangleShape2D_j40gx")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1541695190]
 position = Vector2(22.786451, 3.8146973e-06)
 target_position = Vector2(20, 0)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=365321791]
+position = Vector2(22.78645, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Marker2D" unique_id=788930504]
+self_modulate = Color(0.57254905, 0.57254905, 0, 0.5921569)
+scale = Vector2(-0.12, 1)
+texture = ExtResource("3_boyjm")
