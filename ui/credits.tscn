@@ -28,36 +28,18 @@ offset_bottom = 276.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[center][rainbow][wave][font_size=50]asdfadsf[/font_size][/wave][/rainbow][/center]
-
-[center]fonts[/center]
+text = "[center][font_size=50]Fonts[/font_size][/center]
 
 [url = https://antidote-studios.itch.io/bold-pixel-sprite-font]Bold Pixel Font[/url]
 by Antidote Studios
 
-asassdf
+[center][font_size=50]MSBsoft[/font_size][/center]
 
-
-
-adsfa
-dsf
-
-
-
-
-
-a
-sdf
-a
-dfd
-a
-fd
-
-
-a
-f
-d
-saf"
+[ul]
+Henry [rainbow]M[/rainbow]ora
+Marcelo [rainbow]S[/rainbow]epúlveda
+Sebastian [rainbow]B[/rainbow]enavides
+[/ul]"
 scroll_active = false
 
 [node name="Label" type="Label" parent="." unique_id=1357079934]

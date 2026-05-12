@@ -37,7 +37,7 @@ script = ExtResource("4_a6vjd")
 metadata/_custom_type_script = "uid://bng1gwg0xgpto"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=533011693]
-position = Vector2(1, -42)
+position = Vector2(80, 0)
 shape = SubResource("RectangleShape2D_3t1x0")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1758106683]

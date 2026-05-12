@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://cgaajelvhc4yy"]
 
 [ext_resource type="Script" uid="uid://c014pw6ho0hxd" path="res://player/bullet.gd" id="1_j40gx"]
-
 [ext_resource type="Texture2D" uid="uid://dq3pbh10vx55u" path="res://assets/sprites/Huntress/Sprites/Spear.png" id="2_j40gx"]
-
+[ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="3_boyjm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boyjm"]
 size = Vector2(46, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j40gx"]
 size = Vector2(102.59947, 0.09154643)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42du2"]
+radius = 2.6807613
+height = 18.497902
 
 [node name="Bullet" type="Area2D" unique_id=1444335018]
 scale = Vector2(4.476344, -0.54060185)
@@ -54,3 +57,14 @@ position = Vector2(22.78645, 0)
 self_modulate = Color(0.57254905, 0.57254905, 0, 0.5921569)
 scale = Vector2(-0.12, 1)
 texture = ExtResource("2_j40gx")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1195505416]
+position = Vector2(22.78645, 0)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_boyjm")
+damage = 20
+metadata/_custom_type_script = "uid://bng1gwg0xgpto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1625389967]
+shape = SubResource("CapsuleShape2D_42du2")
