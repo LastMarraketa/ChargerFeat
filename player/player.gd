@@ -18,6 +18,8 @@ var state = State.MOVE
 @export var has_spear = true
 # que tan rápido debe moverse el jugador para activar el daño por impulso
 @export var impact_threshold = 1400
+@export var melee_attack_scene: PackedScene # <-- Asigna aquí la escena del SLASH
+var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
 
 #esta instancia es la raiz del sistema de disparo
 #se usa en la funcion fire(), la cual instancia el nodo bullet (la bala) en esta escena
@@ -160,7 +162,7 @@ func _move(delta: float) -> void:
 	#si tiene municion y quiere disparar , dispara (y no hace nada más, la perdida de municion esta en fire() ) 
 	#si no tiene municion (ammo==false) y quiere disparar, elimina el terrenobala existente y recarga
 	
-	if has_spear and not firing and Input.is_action_just_pressed("fire"):
+	if has_spear and not firing and not is_attacking_melee and Input.is_action_just_pressed("fire"):
 		if ammo==true:
 			animation_tree["parameters/fire/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			pivot.scale.x = sign(get_global_mouse_position().x - global_position.x)
@@ -175,13 +177,23 @@ func _move(delta: float) -> void:
 	if not is_instance_valid(bala_viva):
 		target_marker = null
 		ammo = true
-#################################################################################
-#################################################################################
-#################################################################################
-
-	if move_input:
-		pivot.scale.x = sign(move_input)
 	
+#################################################################################
+#################################################################################
+#################################################################################
+#SISTEMA DE SLASH (ataque melee) 
+#esta es la accion de ataque slash
+	if Input.is_action_just_pressed("slash") and not is_attacking_melee:
+		_execute_melee_attack()
+	if move_input and not is_attacking_melee:
+		pivot.scale.x = sign(move_input)
+
+
+	#if move_input:
+		#pivot.scale.x = sign(move_input)
+	################################################################################
+	################################################################################
+	################################################################################
 	# animation
 	if is_on_floor():
 		if abs(velocity.x) > 10 or move_input:
@@ -201,6 +213,7 @@ func _on_damage_dealt() -> void:
 #################################################################################
 #################################################################################
 #################################################################################
+
 #crea una bala_viva, 
 func fire() -> void:
 	if not bullet_scene:
@@ -219,6 +232,41 @@ func fire() -> void:
 #################################################################################	
 #################################################################################
 #################################################################################
+#SISTEMA DE SLASH (ataque melee) la funcion que llama al melee atack
+
+func _execute_melee_attack() -> void:
+	if not melee_attack_scene:
+		Debug.log("¡Te olvidaste de asignar la escena del ataque Melee!")
+		return
+		
+	is_attacking_melee = true
+	
+	# 1. Obtenemos la dirección exacta hacia el mouse
+	var mouse_pos = get_global_mouse_position()
+	var attack_direction = global_position.direction_to(mouse_pos)
+	
+	# 2. READABILITY: Forzamos al pivot a mirar al mouse (Izquierda o Derecha) en este frame
+	if attack_direction.x != 0:
+		pivot.scale.x = sign(attack_direction.x)
+		
+	# 3. Instanciamos el tajo en el mundo
+	var ataque = melee_attack_scene.instantiate()
+	#get_parent().add_child(ataque) #este mantiene el ataque en la escena (posiblemente util si se quiere cambiar más adelante) 
+	add_child(ataque)
+	# Lo posicionamos ligeramente al frente del jugador en la dirección del mouse
+	ataque.global_position = global_position + (attack_direction * 30)
+	
+	# Rotación omnidireccional (360°) exacta hacia el mouse
+	ataque.global_rotation = attack_direction.angle()
+	
+	# 4. Cuando el tajo termine y se destruya, el jugador puede volver a voltearse libremente
+	ataque.tree_exited.connect(func(): is_attacking_melee = false)
+#################################################################################
+#################################################################################
+#################################################################################
+
+
+
 
 func _on_health_changed(value: int) -> void:
 	health_bar.value = value
