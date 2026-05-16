@@ -9,6 +9,8 @@ extends Area2D
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var mark: Marker2D = $Marker2D
+@onready var bullet_timer = $Timer
+
 
 @export var speed: float = 2000.0 #velocidad de la bala
 var esta_pegado: bool = false  #variable de si esta pegado a algo, por defecto es falso
@@ -20,6 +22,7 @@ func _ready() -> void:
 	#por defecto si la bala no esta pegada a nada (en el aire o siendo disparada), no debe tener collision
 	#por eso se establece como desactivado
 	$StaticBody2D/CollisionShape2D.disabled = true 
+	bullet_timer.timeout.connect(on_timer_reached)
 	
 	
 	
@@ -72,12 +75,12 @@ func _pegarse(target: Node2D) -> void:
 	global_scale = escala_global_original
 	
 	#activo el terreno para que el jugador camine
-	#edit: movido abajo
-	#$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
-	
-	#beta: desactivar Hurtbox de enemigo, no volverse terreno
-	if target is Enemy:
-		if target.has_method("_disable_shield"):
-			target._disable_shield()
-	else:
+	#edit: cuando no pegue a enemigo
+	#esto podría cambiar si queremos que para algún enemigo si se active
+	if target is not Enemy:
 		$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+
+func on_timer_reached() -> void:
+	if not esta_pegado:
+		Debug.log("Lanza despawneada")
+		queue_free()

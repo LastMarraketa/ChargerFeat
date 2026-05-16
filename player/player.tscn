@@ -17,7 +17,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 20.0
-height = 78.0
+height = 88.0
 
 [sub_resource type="Animation" id="Animation_sweqy"]
 length = 0.001
@@ -450,12 +450,12 @@ nodes/fire/position = Vector2(-80, 112)
 node_connections = [&"output", 0, &"fire", &"fire", 0, &"movement", &"fire", 1, &"fire animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw050"]
-size = Vector2(36, 40)
+size = Vector2(48, 86.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b26j0"]
-size = Vector2(46, 16)
+size = Vector2(36, 81)
 
 [node name="Player" type="CharacterBody2D" unique_id=111671453]
 position = Vector2(3, 1)
@@ -485,11 +485,13 @@ parameters/fire/request = 0
 [node name="HitboxComponent" type="Area2D" parent="Pivot" unique_id=1968443068]
 position = Vector2(24, -7)
 collision_layer = 4
-collision_mask = 4
+collision_mask = 0
 script = ExtResource("5_1jxqw")
+damage = 20
 metadata/_custom_type_script = "uid://bng1gwg0xgpto"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitboxComponent" unique_id=538144719]
+position = Vector2(-24, 7.75)
 shape = SubResource("RectangleShape2D_dw050")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=886705199]
@@ -500,6 +502,7 @@ offset = Vector2(0, -19)
 hframes = 7
 
 [node name="Icon" type="Sprite2D" parent="Pivot" unique_id=1547264887]
+visible = false
 position = Vector2(29, -53)
 rotation = 3.1415927
 scale = Vector2(0.1328684, -0.13847473)
@@ -521,14 +524,14 @@ collision_layer = 2
 shape = SubResource("RectangleShape2D_2hs0m")
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=1247057305 node_paths=PackedStringArray("health_component")]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("8_dw050")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://d26yj0mh06tpn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1063677956]
-position = Vector2(0, 38)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_b26j0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=964291719]

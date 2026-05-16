@@ -4,16 +4,21 @@
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="1_h7e1y"]
 [ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="2_7l25x"]
 [ext_resource type="Texture2D" uid="uid://kcrstson0ogr" path="res://assets/sprites/Dungeon Gathering Free Version/Vase Shine Anim.png" id="3_s1lpq"]
+[ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="4_2b5q2"]
 [ext_resource type="Texture2D" uid="uid://bpegceo0ygk1h" path="res://assets/sprites/Shield.png" id="5_7l25x"]
+[ext_resource type="Script" uid="uid://p82d8ia4d6u" path="res://enemies/shield.gd" id="5_cv548"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h7e1y"]
 radius = 34.132095
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l25x"]
-size = Vector2(76, 72)
+size = Vector2(72, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1lpq"]
-size = Vector2(76, 68)
+size = Vector2(76, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru0oo"]
+size = Vector2(76, 71)
 
 [node name="ShieldEnemy" type="CharacterBody2D" unique_id=756933499]
 script = ExtResource("1_7l25x")
@@ -22,13 +27,15 @@ script = ExtResource("1_7l25x")
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_h7e1y")
 
-[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1412510868]
-collision_layer = 4
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1412510868 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_h7e1y")
+health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://d26yj0mh06tpn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=433475224]
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_7l25x")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1999005816]
@@ -43,20 +50,46 @@ frame = 4
 position = Vector2(25, 0)
 target_position = Vector2(40, 0)
 
-[node name="HitboxComponent" type="Area2D" parent="." unique_id=778644804]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2133899787]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1718372020]
+script = ExtResource("4_2b5q2")
+health = 20
+max_health = 20
+metadata/_custom_type_script = "uid://blnpvqimev7d0"
+
+[node name="Shield" type="Node2D" parent="." unique_id=1807049620]
+script = ExtResource("5_cv548")
+
+[node name="ShieldHitbox" type="Area2D" parent="Shield" unique_id=778644804]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("2_7l25x")
 metadata/_custom_type_script = "uid://bng1gwg0xgpto"
 
-[node name="Sprite2D" type="Sprite2D" parent="HitboxComponent" unique_id=389430266]
+[node name="Sprite2D" type="Sprite2D" parent="Shield/ShieldHitbox" unique_id=389430266]
 modulate = Color(0.6039216, 0, 0, 0.8392157)
-position = Vector2(9.536743e-07, -2.000001)
-scale = Vector2(4.75, 4.25)
+position = Vector2(1.1920929e-06, -3.4999998)
+scale = Vector2(4.7500005, 4.4375)
 texture = ExtResource("5_7l25x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2133852668]
-position = Vector2(0, -2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/ShieldHitbox" unique_id=2133852668]
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_s1lpq")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2133899787]
+[node name="ShieldHurtbox" type="Area2D" parent="Shield" unique_id=322520619 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_h7e1y")
+health_component = NodePath("../ShieldHealth")
+metadata/_custom_type_script = "uid://d26yj0mh06tpn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/ShieldHurtbox" unique_id=1430199609]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_ru0oo")
+
+[node name="ShieldHealth" type="Node" parent="Shield" unique_id=484157661]
+script = ExtResource("4_2b5q2")
+health = 20
+max_health = 20
+metadata/_custom_type_script = "uid://blnpvqimev7d0"

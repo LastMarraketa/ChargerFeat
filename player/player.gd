@@ -13,8 +13,11 @@ var state = State.MOVE
 @export var acceleration = 300
 @onready var jump_timer: Timer = $JumpTimer
 @export var propulsion = 900 
-@export var has_bullet = true
+#No se está usando, borrar?
+#@export var has_bullet = true
 @export var has_spear = true
+# que tan rápido debe moverse el jugador para activar el daño por impulso
+@export var impact_threshold = 1400
 
 #esta instancia es la raiz del sistema de disparo
 #se usa en la funcion fire(), la cual instancia el nodo bullet (la bala) en esta escena
@@ -23,8 +26,8 @@ var state = State.MOVE
 #
 @export var bullet_scene: PackedScene
 
-var max_health = 20
-var health = 20
+var max_health = 30
+var health = 30
 var _was_on_floor: bool = false
 var ammo: bool = true
 var bala_viva = null
@@ -44,6 +47,7 @@ var moving = false
 @onready var health_component: HealthComponent = $HealthComponent
 var target_marker: Marker2D = null
 
+#signal free_marker
 
 func _ready() -> void:
 	hitbox_component.damage_dealt.connect(_on_damage_dealt)
@@ -51,11 +55,11 @@ func _ready() -> void:
 	health_component.died.connect(_on_player_died)
 	health_bar.max_value = health_component.max_health
 	_on_health_changed(health_component.health)
+	#free_marker.connect(func(): target_marker = null)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		LevelManager.next_level()
-
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -118,7 +122,8 @@ func _move(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("move_toward"):
-		moving = not moving
+		if is_instance_valid(target_marker):
+			moving = not moving
 	#Proceso de movimiento hacia bala
 	if target_marker and moving:
 		var marker_direction = global_position.direction_to(target_marker.global_position)
@@ -132,6 +137,16 @@ func _move(delta: float) -> void:
 	_was_on_floor = is_on_floor()
 	
 	move_and_slide()
+	
+	### Cambiar estado de hitbox basado en velocidad 
+	var current_speed = velocity.length()
+	
+	
+	if current_speed >= impact_threshold:
+		hitbox_component.monitorable = true
+	else:
+		hitbox_component.monitorable = false
+	###
 	
 	var firing = animation_tree["parameters/fire/active"]
 	
@@ -151,12 +166,15 @@ func _move(delta: float) -> void:
 			pivot.scale.x = sign(get_global_mouse_position().x - global_position.x)
 		else:
 			if is_instance_valid(bala_viva):
+				#free_marker.emit()
 				bala_viva.queue_free()
 			Debug.log("acabo de recargar")
-			ammo=true
-			target_marker = null
+			#ammo=true
 			moving = false
 			
+	if not is_instance_valid(bala_viva):
+		target_marker = null
+		ammo = true
 #################################################################################
 #################################################################################
 #################################################################################

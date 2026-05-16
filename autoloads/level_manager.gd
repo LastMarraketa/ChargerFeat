@@ -29,4 +29,4 @@ func main_menu() -> void:
 
 
 func credits() -> void:
-	get_tree().change_scene_to_packed(credits_scene)
+	get_tree().call_deferred("change_scene_to_packed",credits_scene)

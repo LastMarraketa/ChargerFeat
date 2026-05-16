@@ -41,7 +41,7 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=733980409]
 layout_mode = 2
-text = "this is fun"
+text = "still untitled :v"
 
 [node name="Demo" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1715431782]
 unique_name_in_owner = true
