@@ -1,17 +1,108 @@
 [gd_scene format=3 uid="uid://bttm54od0jbgw"]
 
 [ext_resource type="Script" uid="uid://d1t4xfqonxioa" path="res://enemies/enemy_bullet.gd" id="1_qadii"]
-[ext_resource type="Texture2D" uid="uid://dki0qrnh46vy0" path="res://icon.svg" id="2_45xi0"]
+[ext_resource type="Texture2D" uid="uid://d3k3o54lsp6gr" path="res://assets/sprites/Pixel Art VFX - Blood Mage - FREE Version/VFX3/sprite-sheet.png" id="2_qadii"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xnav5"]
+
+[sub_resource type="Animation" id="Animation_qadii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_qadii")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_45xi0"]
+resource_name = "firing"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_qadii")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xnav5"]
+_data = {
+&"RESET": SubResource("Animation_qadii"),
+&"firing": SubResource("Animation_45xi0")
+}
 
 [node name="enemy bullet" type="Area2D" unique_id=255558512]
 script = ExtResource("1_qadii")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=289470704]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_45xi0")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1212237744]
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_xnav5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1054525240]
+position = Vector2(-9, 0)
+scale = Vector2(0.46441555, -0.41376868)
+texture = ExtResource("2_qadii")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=505343893]
+libraries/ = SubResource("AnimationLibrary_xnav5")

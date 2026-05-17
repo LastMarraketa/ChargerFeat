@@ -294,7 +294,7 @@ nodes/idle/position = Vector2(-580, 260)
 node_connections = [&"output", 0, &"idle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grk76"]
-size = Vector2(63.166668, 28.366669)
+size = Vector2(63.61667, 33.383335)
 
 [node name="Enemigo_Torreta" type="CharacterBody2D" unique_id=223463695]
 script = ExtResource("1_gqaae")
@@ -322,11 +322,12 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="Detection area" type="Area2D" parent="." unique_id=589039728]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection area" unique_id=738716329]
-position = Vector2(-1.5, -17.5)
+position = Vector2(-5, 2.0000076)
 scale = Vector2(30, 30)
 shape = SubResource("RectangleShape2D_grk76")
 
 [node name="fire timer" type="Timer" parent="." unique_id=995510038]
+wait_time = 0.5
 
 [node name="bullet spawn" type="Marker2D" parent="." unique_id=1181341337]
 position = Vector2(-52, -20)

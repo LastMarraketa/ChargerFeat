@@ -308,27 +308,35 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glx33"]
-size = Vector2(66.40385, 49)
+size = Vector2(80.163574, 126.29969)
 
 [node name="Slash" type="Area2D" unique_id=263095410]
 scale = Vector2(2.476187, 0.80760294)
 script = ExtResource("1_tocf0")
 
 [node name="Sprite2D 1" type="Sprite2D" parent="." unique_id=1345503408]
+position = Vector2(27.913795, 34.549488)
+scale = Vector2(0.62310094, 1.353056)
 texture = ExtResource("2_g1hi6")
 hframes = 12
 frame = 6
 
 [node name="Sprite2D 2" type="Sprite2D" parent="." unique_id=1119826445]
+position = Vector2(27.913795, 34.549488)
+scale = Vector2(0.62310094, 1.353056)
 texture = ExtResource("3_bv18j")
 hframes = 12
 
 [node name="Sprite2D 3" type="Sprite2D" parent="." unique_id=443765846]
+position = Vector2(27.913795, 34.549488)
+scale = Vector2(0.62310094, 1.353056)
 texture = ExtResource("4_mxkbg")
 hframes = 12
 frame = 6
 
 [node name="Sprite2D 4" type="Sprite2D" parent="." unique_id=982473297]
+position = Vector2(27.913795, 34.549488)
+scale = Vector2(0.62310094, 1.353056)
 texture = ExtResource("5_k671w")
 hframes = 12
 frame = 6
@@ -338,5 +346,5 @@ libraries/ = SubResource("AnimationLibrary_g6ky6")
 speed_scale = 3.013
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=780710143]
-position = Vector2(32.798077, 0)
+position = Vector2(39.980824, 0)
 shape = SubResource("RectangleShape2D_glx33")

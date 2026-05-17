@@ -15,8 +15,8 @@ var player_ref: Player = null
 var player_in_range: bool = false
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += get_gravity().y * delta
+	#if not is_on_floor():
+		#velocity.y += get_gravity().y * delta
 	
 	playback.travel("idle")
 	move_and_slide()
@@ -54,4 +54,5 @@ func _disparar() -> void:
 	get_parent().add_child(bala)
 	bala.global_position = bullet_spawn.global_position
 	bala.direction = global_position.direction_to(player_ref.global_position)
+	bala.rotation = bala.direction.angle()
 	bala.player = player_ref

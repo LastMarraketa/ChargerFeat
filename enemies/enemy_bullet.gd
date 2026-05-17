@@ -1,6 +1,7 @@
 extends Area2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@export var speed: float = 200.0 #velocidad de la bala
+@export var speed: float = 500.0 #velocidad de la bala
 var direction: Vector2 = Vector2.RIGHT
 var player: Player = null #importante, guarda la logica de contador de balas destruidas
 # Called when the node enters the scene tree for the first time.
@@ -13,11 +14,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	global_position += direction * speed * delta
-
+	
+	animation_player.play("firing")
 
 func _on_body_entered(body:Node2D)->void:
 	if body is Player :
 		Debug.log("impacto a jugador ")
+		queue_free()
+	elif body is not Enemy:
 		queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
