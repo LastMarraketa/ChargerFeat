@@ -54,3 +54,4 @@ func _disparar() -> void:
 	get_parent().add_child(bala)
 	bala.global_position = bullet_spawn.global_position
 	bala.direction = global_position.direction_to(player_ref.global_position)
+	bala.player = player_ref
