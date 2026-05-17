@@ -35,7 +35,7 @@ var ammo: bool = true
 var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
 var moving = false
-
+var balas_destruidas = 0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree

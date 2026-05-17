@@ -1,3 +1,5 @@
+
+class_name Slash
 extends Area2D
 
 
