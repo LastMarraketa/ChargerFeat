@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://pgu1mwgxemwm" path="res://gameplay/spear_upgrade.tscn" id="7_dvlyx"]
 [ext_resource type="PackedScene" uid="uid://bbg3tyfgxrujp" path="res://enemies/floor_enemy.tscn" id="9_rahni"]
 [ext_resource type="PackedScene" uid="uid://c8sc7b4ps28lp" path="res://enemies/shield_enemy.tscn" id="9_yy2pm"]
+[ext_resource type="PackedScene" uid="uid://ddst8obw4dd1u" path="res://enemies/enemigo_torreta.tscn" id="10_rahni"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_on6n3"]
 resource_name = "Cave"
@@ -197,7 +198,10 @@ position = Vector2(-1664, 3136)
 scale = Vector2(4, 4)
 
 [node name="FloorEnemy" parent="." unique_id=1686425892 instance=ExtResource("9_rahni")]
-position = Vector2(2562, 2208)
+position = Vector2(2848, 2245)
 
 [node name="ShieldEnemy" parent="." unique_id=1459963717 instance=ExtResource("9_yy2pm")]
 position = Vector2(-600, 3360)
+
+[node name="Enemigo_Torreta" parent="." unique_id=223463695 instance=ExtResource("10_rahni")]
+position = Vector2(2553, 2070)

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bttm54od0jbgw"]
+
+[ext_resource type="Script" uid="uid://d1t4xfqonxioa" path="res://enemies/enemy_bullet.gd" id="1_qadii"]
+[ext_resource type="Texture2D" uid="uid://dki0qrnh46vy0" path="res://icon.svg" id="2_45xi0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnav5"]
+
+[node name="enemy bullet" type="Area2D" unique_id=255558512]
+script = ExtResource("1_qadii")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=289470704]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_45xi0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1212237744]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_xnav5")
