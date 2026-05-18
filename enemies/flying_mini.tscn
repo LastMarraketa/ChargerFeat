@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://b5mt6n1jpiuxm"]
+
+[ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="1_gbpfu"]
+[ext_resource type="Script" uid="uid://bnc56xf4y7l4n" path="res://enemies/flying_mini.gd" id="1_vhu85"]
+[ext_resource type="Texture2D" uid="uid://cqmpam1ycetun" path="res://assets/sprites/Pixel Monsters Free Pack/Evil Skull/Skull Idle Pose.png" id="2_781kj"]
+[ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="4_xnbbx"]
+[ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="5_ei38e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxw24"]
+atlas = ExtResource("2_781kj")
+region = Rect2(0, 0, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mflnh"]
+atlas = ExtResource("2_781kj")
+region = Rect2(92, 0, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nriw4"]
+atlas = ExtResource("2_781kj")
+region = Rect2(184, 0, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hcpk"]
+atlas = ExtResource("2_781kj")
+region = Rect2(276, 0, 92, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkpqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxw24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mflnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nriw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hcpk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wg47x"]
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8y5e"]
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4ott"]
+radius = 14.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3divn"]
+radius = 450.0
+
+[node name="FlyingMini" type="CharacterBody2D" unique_id=960461749]
+script = ExtResource("1_vhu85")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=372572591]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=668297667]
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wkpqn")
+frame_progress = 0.2241325
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1647098013]
+shape = SubResource("CircleShape2D_wg47x")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1230931413]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_gbpfu")
+metadata/_custom_type_script = "uid://bng1gwg0xgpto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1573866389]
+shape = SubResource("CapsuleShape2D_t8y5e")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=653748917 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("4_xnbbx")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://d26yj0mh06tpn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1988443813]
+shape = SubResource("CapsuleShape2D_h4ott")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1203895693]
+script = ExtResource("5_ei38e")
+health = 5
+max_health = 5
+metadata/_custom_type_script = "uid://blnpvqimev7d0"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=409798036]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=917092953]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1670068844]
+shape = SubResource("CircleShape2D_3divn")
