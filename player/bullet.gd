@@ -10,9 +10,16 @@ extends Area2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var mark: Marker2D = $Marker2D
 @onready var bullet_timer = $Timer
+@onready var timerdeteccion: Timer = $timerdeteccion
 
 
-@export var speed: float = 2000.0 #velocidad de la bala
+#por mientras+
+@onready var deteccion: Area2D = $deteccion
+var player_in_range: bool = false
+
+
+
+@export var speed: float = 1000.0 #velocidad de la bala
 var esta_pegado: bool = false  #variable de si esta pegado a algo, por defecto es falso
 
 func _ready() -> void:
@@ -23,8 +30,8 @@ func _ready() -> void:
 	#por eso se establece como desactivado
 	$StaticBody2D/CollisionShape2D.disabled = true 
 	bullet_timer.timeout.connect(on_timer_reached)
-	
-	
+	deteccion.body_entered.connect(_on_player_detected)
+	timerdeteccion.timeout.connect(_tiempo_de_gracia)
 	
 func _physics_process(delta: float) -> void:
 	
@@ -37,7 +44,18 @@ func _physics_process(delta: float) -> void:
 		var objeto = $RayCast2D.get_collider()
 		_pegarse(objeto)
 		ray_cast_2d.enabled = false
-	
+
+var t_gracia: bool = false
+
+func _tiempo_de_gracia() -> void:
+		t_gracia =true
+		
+
+func _on_player_detected(body: Node2D) -> void:
+	if body is Player and t_gracia == true:
+		Debug.log("jugador encontro bala")
+		queue_free()
+		
 func _on_body_entered(body:Node2D)->void:
 	if body is Player or esta_pegado:
 		return  #si el collisionShape2D detecta a un jugador (mask1) o otra bala (mask5) las ignoro

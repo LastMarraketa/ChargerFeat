@@ -435,20 +435,24 @@ _data = {
 &"run": SubResource("Animation_1jxqw")
 }
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wodsf"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_urp6f"]
 animation = &"fire"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ivps1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bwjto"]
-graph_offset = Vector2(-626.4473, 0)
+graph_offset = Vector2(-702.96063, 63.571045)
 nodes/movement/node = ExtResource("7_nvl01")
 nodes/movement/position = Vector2(-440, 60)
 nodes/fire/node = SubResource("AnimationNodeOneShot_ivps1")
 nodes/fire/position = Vector2(-80, 112)
 "nodes/fire animation/node" = SubResource("AnimationNodeAnimation_urp6f")
 "nodes/fire animation/position" = Vector2(-656, 448)
-node_connections = [&"output", 0, &"fire", &"fire", 0, &"movement", &"fire", 1, &"fire animation"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_wodsf")
+nodes/TimeScale/position = Vector2(-352, 336)
+node_connections = [&"output", 0, &"fire", &"fire", 0, &"movement", &"fire", 1, &"TimeScale", &"TimeScale", 0, &"fire animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw050"]
 size = Vector2(48, 86.5)
@@ -465,7 +469,6 @@ collision_mask = 17
 script = ExtResource("1_onrkg")
 jump_speed = 500
 acceleration = 1000
-has_spear = false
 melee_attack_scene = ExtResource("2_wodsf")
 bullet_scene = ExtResource("2_n7ghd")
 
@@ -481,6 +484,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/fire/active = false
 parameters/fire/internal_active = false
 parameters/fire/request = 0
+parameters/TimeScale/scale = 2.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=906795973]
 
