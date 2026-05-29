@@ -20,7 +20,7 @@ var state = State.MOVE
 @export var impact_threshold = 1400
 @export var melee_attack_scene: PackedScene # <-- Asigna aquí la escena del SLASH
 var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
-
+var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
 #esta instancia es la raiz del sistema de disparo
 #se usa en la funcion fire(), la cual instancia el nodo bullet (la bala) en esta escena
 #crea una copia denominada bala_viva, a la cual se le aplican las acciones de teleportar y disparar
@@ -205,6 +205,8 @@ func _move(delta: float) -> void:
 #esta es la accion de ataque slash
 	if Input.is_action_just_pressed("slash") and not is_attacking_melee:
 		_execute_melee_attack()
+	if Input.is_action_just_pressed("dash_to_kill") and not is_attacking_melee:
+		_execute_dash_attack()
 	if Input.is_action_just_pressed("toggle_shield") and not shield_active and not shield_cooldown:
 		_activate_shield()
 	if move_input and not is_attacking_melee:
@@ -250,7 +252,10 @@ func fire() -> void:
 	ammo=false
 	
 	Debug.log("disparo realizado, municion agotada")
-	
+#################################################################################
+#################################################################################	
+#################################################################################
+#################################################################################	
 #################################################################################	
 #################################################################################
 #################################################################################
@@ -286,10 +291,18 @@ func _execute_melee_attack() -> void:
 #################################################################################
 #################################################################################
 #################################################################################
-
-
-
-
+#################################################################################	
+#################################################################################
+#################################################################################
+#SISTEMA DE DASH_ATTACK (ataque melee) la funcion que llama al melee atack
+func _execute_dash_attack() -> void:
+	is_dashing_to_kill = true
+	var mouse_dir = global_position.direction_to(get_global_mouse_position())
+	velocity = mouse_dir * 5000
+#################################################################################
+#################################################################################	
+#################################################################################
+#################################################################################
 func _on_health_changed(value: int) -> void:
 	health_bar.value = value
 

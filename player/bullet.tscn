@@ -14,6 +14,9 @@ size = Vector2(102.59947, 0.09154643)
 radius = 2.6807613
 height = 18.497902
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_boyjm"]
+radius = 32.614433
+
 [node name="Bullet" type="Area2D" unique_id=1444335018]
 scale = Vector2(4.476344, -0.54060185)
 collision_layer = 8
@@ -26,7 +29,7 @@ scale = Vector2(1.1065023, 7.416342)
 texture = ExtResource("2_j40gx")
 
 [node name="Timer" type="Timer" parent="." unique_id=1545028940]
-wait_time = 0.09
+wait_time = 1.1669999999999998
 one_shot = true
 autostart = true
 
@@ -69,3 +72,13 @@ metadata/_custom_type_script = "uid://bng1gwg0xgpto"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1625389967]
 shape = SubResource("CapsuleShape2D_42du2")
+
+[node name="deteccion" type="Area2D" parent="." unique_id=184515521]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deteccion" unique_id=1162525545]
+position = Vector2(1.3403795, -1.8497901)
+shape = SubResource("CircleShape2D_boyjm")
+
+[node name="timerdeteccion" type="Timer" parent="." unique_id=112319981]
+wait_time = 0.288
+autostart = true
