@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="8_dw050"]
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="12_ebec5"]
 [ext_resource type="AudioStream" uid="uid://veweicylagko" path="res://dragon-studio-cartoon-jump-463196.mp3" id="12_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://btey4ruglplms" path="res://assets/sprites/charger/charger_bg.png" id="16_e7oew"]
+[ext_resource type="Texture2D" uid="uid://cmh3fqifb71b7" path="res://assets/sprites/charger/charger_fg.png" id="17_c35mf"]
+[ext_resource type="Texture2D" uid="uid://60bib5y1fn78" path="res://assets/sprites/charger/charge_fill.png" id="18_65viv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 20.0
@@ -562,3 +565,16 @@ offset_bottom = -47.0
 theme_type_variation = &"HealthBar"
 step = 1.0
 show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1841868373]
+offset_left = -81.0
+offset_top = -32.0
+offset_right = -45.0
+offset_bottom = 4.0
+max_value = 6.0
+value = 2.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("16_e7oew")
+texture_over = ExtResource("17_c35mf")
+texture_progress = ExtResource("18_65viv")

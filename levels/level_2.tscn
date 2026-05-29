@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bb17db381bnli" path="res://ui/pause_menu.tscn" id="3_0srwa"]
 [ext_resource type="PackedScene" uid="uid://stdfajjojk45" path="res://gameplay/goal.tscn" id="4_v5uil"]
 [ext_resource type="PackedScene" uid="uid://dsenkcn2o2beu" path="res://ui/hud.tscn" id="5_5722l"]
+[ext_resource type="PackedScene" uid="uid://b8d8obw4dd2u" path="res://enemies/boss.tscn" id="6_ilhis"]
 
 [node name="Level2" type="Node2D" unique_id=1046795863]
 
@@ -24,3 +25,6 @@ position = Vector2(111, 909)
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1750061234 instance=ExtResource("3_0srwa")]
 
 [node name="HUD" parent="." unique_id=1648690276 instance=ExtResource("5_5722l")]
+
+[node name="Boss" parent="." unique_id=1897147392 instance=ExtResource("6_ilhis")]
+position = Vector2(1874, 478)

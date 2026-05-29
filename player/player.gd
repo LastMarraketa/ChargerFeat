@@ -39,7 +39,7 @@ var balas_destruidas = 0
 var shield_active: bool = false
 var shield_cooldown: bool = false
 var absorbed_bullets: int = 0
-@export var max_absorbed_bullets: int = 10
+@export var max_absorbed_bullets: int = 6
 @export var shield_duration: float = 3.0
 @export var shield_cooldown_time: float = 5.0
 var shield_duration_timer: Timer
