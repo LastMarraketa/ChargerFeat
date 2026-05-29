@@ -36,6 +36,14 @@ var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
 var moving = false
 var balas_destruidas = 0
+var shield_active: bool = false
+var shield_cooldown: bool = false
+var absorbed_bullets: int = 0
+@export var max_absorbed_bullets: int = 10
+@export var shield_duration: float = 3.0
+@export var shield_cooldown_time: float = 5.0
+var shield_duration_timer: Timer
+var shield_cooldown_timer: Timer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -58,6 +66,18 @@ func _ready() -> void:
 	health_bar.max_value = health_component.max_health
 	_on_health_changed(health_component.health)
 	#free_marker.connect(func(): target_marker = null)
+	
+	shield_duration_timer = Timer.new()
+	shield_duration_timer.one_shot = true
+	shield_duration_timer.wait_time = shield_duration
+	shield_duration_timer.timeout.connect(_on_shield_timeout)
+	add_child(shield_duration_timer)
+	
+	shield_cooldown_timer = Timer.new()
+	shield_cooldown_timer.one_shot = true
+	shield_cooldown_timer.wait_time = shield_cooldown_time
+	shield_cooldown_timer.timeout.connect(_on_cooldown_timeout)
+	add_child(shield_cooldown_timer)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
@@ -185,6 +205,8 @@ func _move(delta: float) -> void:
 #esta es la accion de ataque slash
 	if Input.is_action_just_pressed("slash") and not is_attacking_melee:
 		_execute_melee_attack()
+	if Input.is_action_just_pressed("toggle_shield") and not shield_active and not shield_cooldown:
+		_activate_shield()
 	if move_input and not is_attacking_melee:
 		pivot.scale.x = sign(move_input)
 
@@ -275,3 +297,26 @@ func _on_health_changed(value: int) -> void:
 func _on_player_died() -> void:
 	queue_free()
 	Debug.log("me moriii :C")
+
+
+func _activate_shield() -> void:
+	shield_active = true
+	shield_duration_timer.start()
+	pivot.modulate = Color(0.3, 0.7, 1.0, 0.7)
+
+
+func _on_shield_timeout() -> void:
+	shield_active = false
+	pivot.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	shield_cooldown = true
+	shield_cooldown_timer.start()
+
+
+func _on_cooldown_timeout() -> void:
+	shield_cooldown = false
+
+
+func absorb_bullet() -> void:
+	if absorbed_bullets < max_absorbed_bullets:
+		absorbed_bullets += 1
+		Debug.log("Bala absorbida: " + str(absorbed_bullets) + "/" + str(max_absorbed_bullets))

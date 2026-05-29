@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://stdfajjojk45" path="res://gameplay/goal.tscn" id="6_btoec"]
 [ext_resource type="PackedScene" uid="uid://bbg3tyfgxrujp" path="res://enemies/floor_enemy.tscn" id="6_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cjxh0blecs0ap" path="res://enemies/wall_enemy.tscn" id="7_l53as"]
+[ext_resource type="PackedScene" path="res://enemies/chasing_enemy.tscn" id="8_chasing"]
 
 [node name="Level1" type="Node2D" unique_id=1046795863]
 script = ExtResource("1_l53as")
@@ -34,3 +35,6 @@ position = Vector2(-700, 589)
 
 [node name="WallEnemy" parent="." unique_id=1035513402 instance=ExtResource("7_l53as")]
 position = Vector2(-241, 992)
+
+[node name="ChasingEnemy" parent="." unique_id=1815866299 instance=ExtResource("8_chasing")]
+position = Vector2(-550, 800)

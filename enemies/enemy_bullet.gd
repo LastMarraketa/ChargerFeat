@@ -19,7 +19,10 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body:Node2D)->void:
 	if body is Player :
-		Debug.log("impacto a jugador ")
+		if body.shield_active:
+			body.absorb_bullet()
+		else:
+			Debug.log("impacto a jugador ")
 		queue_free()
 	elif body is not Enemy:
 		queue_free()

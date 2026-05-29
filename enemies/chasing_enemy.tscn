@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cx6r0r1m5o7g1"]
+
+[ext_resource type="Script" uid="uid://cjs3r8p8ejsuq" path="res://enemies/chasing_enemy.gd" id="1_chasing"]
+[ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="2_xsfoe"]
+[ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="3_l4ld1"]
+[ext_resource type="Texture2D" uid="uid://kcrstson0ogr" path="res://assets/sprites/Dungeon Gathering Free Version/Vase Shine Anim.png" id="4_8b31c"]
+[ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="5_3mpfr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chasing"]
+radius = 34.132
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(72, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(76, 71)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
+radius = 800.0
+
+[node name="ChasingEnemy" type="CharacterBody2D" unique_id=1024242327]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_chasing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493116408]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_chasing")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1615953602 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("2_xsfoe")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1909505225]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=428787954]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_l4ld1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=333981957]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_hit")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=478057743]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=16970863]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(4, 4)
+texture = ExtResource("4_8b31c")
+hframes = 16
+frame = 4
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1280504186]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=356755438]
+shape = SubResource("CircleShape2D_detect")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1283150431]
+script = ExtResource("5_3mpfr")
+health = 20
+max_health = 20
