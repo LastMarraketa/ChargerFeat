@@ -20,7 +20,16 @@ var state = State.MOVE
 @export var impact_threshold = 1400
 @export var melee_attack_scene: PackedScene # <-- Asigna aquí la escena del SLASH
 var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
+
+
 var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
+var dash_origin: Vector2 = Vector2.ZERO #estas 2 variables limitan el dash attack
+var dash_distance: float = 1000.0 #esto ajusta hasta donde se llega
+
+
+
+
+
 #esta instancia es la raiz del sistema de disparo
 #se usa en la funcion fire(), la cual instancia el nodo bullet (la bala) en esta escena
 #crea una copia denominada bala_viva, a la cual se le aplican las acciones de teleportar y disparar
@@ -142,7 +151,13 @@ func _move(delta: float) -> void:
 			#velocity = Vector2.ZERO                       
 			Debug.log("¡Teletransporte!")   
 	
-	
+	#proceso de limitar el ataque dash 
+	if is_dashing_to_kill:
+		if global_position.distance_to(dash_origin) >= dash_distance:
+			is_dashing_to_kill = false
+			velocity = Vector2.ZERO
+			
+			
 	if Input.is_action_just_pressed("move_toward"):
 		if is_instance_valid(target_marker):
 			moving = not moving
@@ -294,11 +309,17 @@ func _execute_melee_attack() -> void:
 #################################################################################	
 #################################################################################
 #################################################################################
+
+
 #SISTEMA DE DASH_ATTACK (ataque melee) la funcion que llama al melee atack
 func _execute_dash_attack() -> void:
 	is_dashing_to_kill = true
 	var mouse_dir = global_position.direction_to(get_global_mouse_position())
 	velocity = mouse_dir * 5000
+	dash_origin = global_position
+	
+	
+	
 #################################################################################
 #################################################################################	
 #################################################################################
