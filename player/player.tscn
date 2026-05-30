@@ -446,7 +446,7 @@ animation = &"fire"
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ivps1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bwjto"]
-graph_offset = Vector2(-702.96063, 63.571045)
+graph_offset = Vector2(-697.6236, 596.175)
 nodes/movement/node = ExtResource("7_nvl01")
 nodes/movement/position = Vector2(-440, 60)
 nodes/fire/node = SubResource("AnimationNodeOneShot_ivps1")
@@ -467,8 +467,6 @@ size = Vector2(36, 81)
 
 [node name="Player" type="CharacterBody2D" unique_id=111671453]
 position = Vector2(3, 1)
-collision_layer = 129
-collision_mask = 17
 script = ExtResource("1_onrkg")
 jump_speed = 500
 acceleration = 1000
@@ -487,7 +485,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/fire/active = false
 parameters/fire/internal_active = false
 parameters/fire/request = 0
-parameters/TimeScale/scale = 2.0
+parameters/TimeScale/scale = 4.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=906795973]
 

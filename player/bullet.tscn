@@ -74,6 +74,7 @@ metadata/_custom_type_script = "uid://bng1gwg0xgpto"
 shape = SubResource("CapsuleShape2D_42du2")
 
 [node name="deteccion" type="Area2D" parent="." unique_id=184515521]
+scale = Vector2(1.588756, 3.4025815)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="deteccion" unique_id=1162525545]
 position = Vector2(1.3403795, -1.8497901)

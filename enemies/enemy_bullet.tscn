@@ -91,6 +91,9 @@ _data = {
 &"firing": SubResource("Animation_45xi0")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qadii"]
+radius = 35.510563
+
 [node name="enemy bullet" type="Area2D" unique_id=255558512]
 script = ExtResource("1_qadii")
 
@@ -106,3 +109,8 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=505343893]
 libraries/ = SubResource("AnimationLibrary_xnav5")
+
+[node name="time to kill area enemy bullet" type="Area2D" parent="." unique_id=1101931811]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="time to kill area enemy bullet" unique_id=531165785]
+shape = SubResource("CircleShape2D_qadii")

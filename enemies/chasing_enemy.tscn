@@ -18,6 +18,9 @@ size = Vector2(76, 71)
 [sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
 radius = 800.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhohw"]
+radius = 77.00649
+
 [node name="ChasingEnemy" type="CharacterBody2D" unique_id=1024242327]
 collision_layer = 4
 collision_mask = 5
@@ -66,3 +69,9 @@ shape = SubResource("CircleShape2D_detect")
 script = ExtResource("5_3mpfr")
 health = 20
 max_health = 20
+
+[node name="time to kill area chasing enemy" type="Area2D" parent="." unique_id=1210835096]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="time to kill area chasing enemy" unique_id=1664865272]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_fhohw")

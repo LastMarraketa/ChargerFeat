@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var move_speed = 120.0
+@export var move_speed = 400.0
 @export var accel = 8.0
 @export var patrol_radius = 60.0
 @export var patrol_speed = 50.0
@@ -19,6 +19,8 @@ var patrol_target: Vector2
 @onready var sprite: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox: HitboxComponent = $HitboxComponent
+@onready var time_to_kill_area_flyingmini: Area2D = $"time to kill area flyingmini"
+var player_flying_mini: Player = null
 
 func _ready() -> void:
 	patrol_origin = global_position
@@ -29,10 +31,27 @@ func _ready() -> void:
 	
 	detect_area.body_entered.connect(_on_body_entered)
 	detect_area.body_exited.connect(_on_body_exited)
-	
+	time_to_kill_area_flyingmini.body_entered.connect(_on_time_to_kill_flyingmini)
+	time_to_kill_area_flyingmini.area_entered.connect(_on_just_slashed)
 	health_component.died.connect(_on_enemy_died)
 	sprite.play("default")
-	
+
+func _on_time_to_kill_flyingmini(body: Node2D) -> void:
+	if (body is Player) and ( body.is_dashing_to_kill == true ):
+		queue_free() 
+		
+func _on_just_slashed(area: Area2D) -> void:
+	if area is Slash:
+		#ojo, aca la referencia a player no es null como dice arriba
+		#la referencia a player es guardada por enemigo torreta cuando
+		#cuando este observa que entran a su area, guarda estos datos de player y "comunica"
+		if player:
+			player.balas_destruidas += 2
+			Debug.log("enemigo volador destruido " + str(player.balas_destruidas))
+		queue_free()
+		
+		
+		
 func _physics_process(delta: float) -> void:
 	match state:
 		State.PATROL:

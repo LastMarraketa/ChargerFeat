@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c6v2hvfk0gyew" path="res://enemies/enemigo_torreta.gd" id="1_gqaae"]
 [ext_resource type="Texture2D" uid="uid://dw6vke7hi1fmd" path="res://assets/sprites/Necromancer_creativekind-Sheet.png" id="2_dkneq"]
 [ext_resource type="PackedScene" uid="uid://bttm54od0jbgw" path="res://enemies/enemy_bullet.tscn" id="2_grk76"]
+[ext_resource type="PackedScene" uid="uid://b5mt6n1jpiuxm" path="res://enemies/flying_mini.tscn" id="3_cshgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svlwx"]
 size = Vector2(44, 55)
@@ -296,9 +297,15 @@ node_connections = [&"output", 0, &"idle"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grk76"]
 size = Vector2(63.61667, 33.383335)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cshgs"]
+size = Vector2(185, 206)
+
 [node name="Enemigo_Torreta" type="CharacterBody2D" unique_id=223463695]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_gqaae")
 enemy_bullet_scene = ExtResource("2_grk76")
+flying_mini_scene = ExtResource("3_cshgs")
 metadata/_custom_type_script = "uid://w7d07qartkhd"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1278265857]
@@ -311,6 +318,7 @@ vframes = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=677920895]
 scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_svlwx")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1711797216]
 libraries/ = SubResource("AnimationLibrary_30mnd")
@@ -331,3 +339,13 @@ wait_time = 0.5
 
 [node name="bullet spawn" type="Marker2D" parent="." unique_id=1181341337]
 position = Vector2(-52, -20)
+
+[node name="time to kill area turret" type="Area2D" parent="." unique_id=1328355175]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="time to kill area turret" unique_id=2023893624]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_cshgs")
+
+[node name="spawn timer" type="Timer" parent="." unique_id=430170974]
+wait_time = 3.0
+autostart = true

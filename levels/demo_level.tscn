@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ddst8obw4dd1u" path="res://enemies/enemigo_torreta.tscn" id="10_rahni"]
 [ext_resource type="PackedScene" uid="uid://b5mt6n1jpiuxm" path="res://enemies/flying_mini.tscn" id="11_lih0g"]
 [ext_resource type="PackedScene" uid="uid://cx6r0r1m5o7g1" path="res://enemies/chasing_enemy.tscn" id="12_677m7"]
-[ext_resource type="PackedScene" path="res://enemies/boss.tscn" id="13_dvlyx"]
+[ext_resource type="PackedScene" uid="uid://b8d8obw4dd2u" path="res://enemies/boss.tscn" id="13_dvlyx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_677m7"]
 vertices = PackedVector2Array(1994, 2506, 2934, 2614, 374, 2614, 1398, 2506, 2934, 1869.9609, 2698, 2314, 2698, 2230, 2422, 2314, 1994, 2422, 906, 1867.4922, 2422, 2230, 906, 2250, 1398, 2422, -1134.0078, 3382, -1134.2422, 3018, -394, 3018, -394, 3082, -266, 3082, -266, 3146, 138, 2998, -118, 2998, -118, 2250, 374, 3382, 138, 3146)
@@ -178,6 +178,22 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_on6n3")
 
 [node name="DemoLevel" type="Node2D" unique_id=2146360627]
+
+[node name="tutorial canvas layer" type="CanvasLayer" parent="." unique_id=623325674]
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="tutorial canvas layer" unique_id=586047863]
+offset_left = 1182.0
+offset_top = 2647.0
+offset_right = 2349.0
+offset_bottom = 2869.0
+text = "TUTORIAL:  
+CLICK izquierdo= SLASH ATTACK (elimina balas y calaveras) 
+CLICK derecho= LAZAR FLECHA 
+LETRA \"Q\" = activa modo SEGUIMIENTO, va a seguir siempre la ultima flecha viva 
+(nota: la flecha muere al lanzar otra, o al acercarse a recogerla) 
+(nota2: al lanzar otra flecha justo al arribar a un terreno, el jugador queda enganchado)
+LETRA \"E\" = DASH ATTACK (borra todo lo que toca, y el jugador no recibe daño durante)"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1494829784]
 position = Vector2(893.5, 1666)

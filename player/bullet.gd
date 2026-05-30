@@ -19,7 +19,7 @@ var player_in_range: bool = false
 
 
 
-@export var speed: float = 1000.0 #velocidad de la bala
+@export var speed: float = 3000.0 #velocidad de la bala
 var esta_pegado: bool = false  #variable de si esta pegado a algo, por defecto es falso
 
 func _ready() -> void:

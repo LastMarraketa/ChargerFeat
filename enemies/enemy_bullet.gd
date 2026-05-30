@@ -1,5 +1,6 @@
 extends Area2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var time_to_kill_area_enemy_bullet: Area2D = $"time to kill area enemy bullet"
 
 @export var speed: float = 500.0 #velocidad de la bala
 var direction: Vector2 = Vector2.RIGHT
@@ -9,7 +10,7 @@ func _ready() -> void:
 	# Conectamos la señal de colisión con cuerpos físicos (TileMaps, StaticBodies, etc.)
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
-
+	time_to_kill_area_enemy_bullet.body_entered.connect(_on_time_to_kill_enemy_bullet)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
@@ -17,6 +18,10 @@ func _process(delta: float) -> void:
 	
 	animation_player.play("firing")
 
+func _on_time_to_kill_enemy_bullet(body: Node2D) -> void:
+	if (body is Player) and ( body.is_dashing_to_kill == true ):
+		queue_free() 
+		
 func _on_body_entered(body:Node2D)->void:
 	if body is Player :
 		if body.shield_active:

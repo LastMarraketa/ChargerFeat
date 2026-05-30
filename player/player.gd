@@ -20,6 +20,7 @@ var state = State.MOVE
 @export var impact_threshold = 1400
 @export var melee_attack_scene: PackedScene # <-- Asigna aquí la escena del SLASH
 var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 
 
 var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
@@ -40,7 +41,7 @@ var dash_distance: float = 1000.0 #esto ajusta hasta donde se llega
 var max_health = 30
 var health = 30
 var _was_on_floor: bool = false
-var ammo: bool = true
+#var ammo: bool = true
 var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
 var moving = false
@@ -156,6 +157,7 @@ func _move(delta: float) -> void:
 		if global_position.distance_to(dash_origin) >= dash_distance:
 			is_dashing_to_kill = false
 			velocity = Vector2.ZERO
+			hurtbox_component.set_deferred("monitoring", true)
 			
 			
 	if Input.is_action_just_pressed("move_toward"):
@@ -165,8 +167,8 @@ func _move(delta: float) -> void:
 	if target_marker and moving:
 		var marker_direction = global_position.direction_to(target_marker.global_position)
 		velocity = marker_direction * 3 * speed
-		if global_position.distance_to(target_marker.global_position) < 70:
-			moving = false
+		#if global_position.distance_to(target_marker.global_position) < 70:
+			#moving = false
 
 	var move_input = Input.get_axis("move_left", "move_right")
 	velocity.x = move_toward(velocity.x, move_input * speed, acceleration * delta)
@@ -198,20 +200,20 @@ func _move(delta: float) -> void:
 	#si no tiene municion (ammo==false) y quiere disparar, elimina el terrenobala existente y recarga
 	
 	if has_spear and not firing and not is_attacking_melee and Input.is_action_just_pressed("fire"):
-		if ammo==true:
+		#if ammo==true:
 			animation_tree["parameters/fire/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			pivot.scale.x = sign(get_global_mouse_position().x - global_position.x)
-		else:
-			if is_instance_valid(bala_viva):
+		#else:
+			#if is_instance_valid(bala_viva):
 				#free_marker.emit()
-				bala_viva.queue_free()
-			Debug.log("acabo de recargar")
+				#bala_viva.queue_free()
+			#Debug.log("acabo de recargar")
 			#ammo=true
-			moving = false
+			#moving = false
 			
 	if not is_instance_valid(bala_viva):
 		target_marker = null
-		ammo = true
+		#ammo = true
 	
 #################################################################################
 #################################################################################
@@ -257,6 +259,10 @@ func _on_damage_dealt() -> void:
 func fire() -> void:
 	if not bullet_scene:
 		Debug.log("me olvido poner la bala · 0 ·)>")
+		
+	if is_instance_valid(bala_viva): #esto elimina toda bala al disparar
+		bala_viva.queue_free() #asi no hay que recargar pero siempre hay 1 sola bala viva
+		
 	bala_viva = bullet_scene.instantiate() #instancia desde otra escena (copia temporal en esta escena) 
 	get_parent().add_child(bala_viva) #añade bala_viva como hijo del jugador
 	bala_viva.global_position = bullet_spawn_marker.global_position #la posiciona en un punto (spawn)
@@ -264,7 +270,7 @@ func fire() -> void:
 	var mouse_direction = bullet_spawn_marker.global_position.direction_to(get_global_mouse_position()) 
 	bala_viva.global_rotation = mouse_direction.angle()
 	#establece que se gasto la municion en crear la bala_viva (parte del loop)
-	ammo=false
+	#ammo=false
 	
 	Debug.log("disparo realizado, municion agotada")
 #################################################################################
@@ -314,6 +320,7 @@ func _execute_melee_attack() -> void:
 #SISTEMA DE DASH_ATTACK (ataque melee) la funcion que llama al melee atack
 func _execute_dash_attack() -> void:
 	is_dashing_to_kill = true
+	hurtbox_component.set_deferred("monitoring", false)
 	var mouse_dir = global_position.direction_to(get_global_mouse_position())
 	velocity = mouse_dir * 5000
 	dash_origin = global_position
