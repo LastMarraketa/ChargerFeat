@@ -26,7 +26,7 @@ var is_attacking_melee: bool = false        # <-- Nueva variable de control visu
 var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
 var dash_origin: Vector2 = Vector2.ZERO #estas 2 variables limitan el dash attack
 var dash_distance: float = 1000.0 #esto ajusta hasta donde se llega
-
+var dash_ready: bool = false #maneja cuando el dash es usable (con carga completa)
 
 
 
@@ -45,7 +45,8 @@ var _was_on_floor: bool = false
 var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
 var moving = false
-var balas_destruidas = 0
+#balas absorbidas ahoras lo debería ver el Charger
+#var balas_destruidas = 0
 var shield_active: bool = false
 var shield_cooldown: bool = false
 var absorbed_bullets: int = 0
@@ -66,6 +67,7 @@ var shield_cooldown_timer: Timer
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_component: HealthComponent = $HealthComponent
 var target_marker: Marker2D = null
+@onready var charger: Charger = $Charger # barra de carga, maneja las balas absorbidas
 
 #signal free_marker
 
@@ -88,6 +90,8 @@ func _ready() -> void:
 	shield_cooldown_timer.wait_time = shield_cooldown_time
 	shield_cooldown_timer.timeout.connect(_on_cooldown_timeout)
 	add_child(shield_cooldown_timer)
+	
+	charger.full_charge.connect(_on_full_charge)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
@@ -222,7 +226,7 @@ func _move(delta: float) -> void:
 #esta es la accion de ataque slash
 	if Input.is_action_just_pressed("slash") and not is_attacking_melee:
 		_execute_melee_attack()
-	if Input.is_action_just_pressed("dash_to_kill") and not is_attacking_melee:
+	if Input.is_action_just_pressed("dash_to_kill") and not is_attacking_melee and dash_ready:
 		_execute_dash_attack()
 	if Input.is_action_just_pressed("toggle_shield") and not shield_active and not shield_cooldown:
 		_activate_shield()
@@ -324,7 +328,8 @@ func _execute_dash_attack() -> void:
 	var mouse_dir = global_position.direction_to(get_global_mouse_position())
 	velocity = mouse_dir * 5000
 	dash_origin = global_position
-	
+	charger.value = 0.0
+	dash_ready = false
 	
 	
 #################################################################################
@@ -361,3 +366,6 @@ func absorb_bullet() -> void:
 	if absorbed_bullets < max_absorbed_bullets:
 		absorbed_bullets += 1
 		Debug.log("Bala absorbida: " + str(absorbed_bullets) + "/" + str(max_absorbed_bullets))
+	
+func _on_full_charge() -> void:
+	dash_ready = true
