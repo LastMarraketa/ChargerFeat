@@ -22,6 +22,8 @@ var state = State.MOVE
 var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 var game_over_scene: PackedScene = preload("res://ui/game_over_menu.tscn")
+var level_complete_scene: PackedScene = preload("res://ui/level_complete_menu.tscn")
+
 
 
 
@@ -94,7 +96,8 @@ func _ready() -> void:
 	add_child(shield_cooldown_timer)
 	
 	charger.full_charge.connect(_on_full_charge)
-	_setup_game_over_menu()
+	_setup_level_ui()
+
 
 	
 func _input(event: InputEvent) -> void:
@@ -378,13 +381,17 @@ func _on_full_charge() -> void:
 	dash_ready = true
 
 
-func _setup_game_over_menu() -> void:
+func _setup_level_ui() -> void:
 	var canvas_layer = get_parent().find_child("CanvasLayer", true, false)
 	if canvas_layer:
 		var game_over_instance = game_over_scene.instantiate()
 		canvas_layer.add_child(game_over_instance)
+		var level_complete_instance = level_complete_scene.instantiate()
+		canvas_layer.add_child(level_complete_instance)
 	else:
 		var new_canvas = CanvasLayer.new()
 		get_parent().add_child(new_canvas)
 		var game_over_instance = game_over_scene.instantiate()
 		new_canvas.add_child(game_over_instance)
+		var level_complete_instance = level_complete_scene.instantiate()
+		new_canvas.add_child(level_complete_instance)

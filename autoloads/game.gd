@@ -2,6 +2,8 @@ extends Node
 
 signal coins_changed(value: int)
 signal player_died()
+signal level_completed()
+
 
 
 var coins: int = 0:

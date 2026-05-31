@@ -11,6 +11,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	var player: Player = body as Player
 	if player:
-		LevelManager.next_level()
+		Game.level_completed.emit()
 		AudioManager.play_sfx(sfx)
+
 		
