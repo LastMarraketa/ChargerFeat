@@ -21,6 +21,8 @@ var state = State.MOVE
 @export var melee_attack_scene: PackedScene # <-- Asigna aquí la escena del SLASH
 var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+var game_over_scene: PackedScene = preload("res://ui/game_over_menu.tscn")
+
 
 
 var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
@@ -92,6 +94,8 @@ func _ready() -> void:
 	add_child(shield_cooldown_timer)
 	
 	charger.full_charge.connect(_on_full_charge)
+	_setup_game_over_menu()
+
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
@@ -341,8 +345,11 @@ func _on_health_changed(value: int) -> void:
 
 
 func _on_player_died() -> void:
-	queue_free()
-	Debug.log("me moriii :C")
+	hide()
+	set_physics_process(false)
+	set_process_unhandled_input(false)
+	Game.player_died.emit()
+
 
 
 func _activate_shield() -> void:
@@ -369,3 +376,15 @@ func absorb_bullet() -> void:
 	
 func _on_full_charge() -> void:
 	dash_ready = true
+
+
+func _setup_game_over_menu() -> void:
+	var canvas_layer = get_parent().find_child("CanvasLayer", true, false)
+	if canvas_layer:
+		var game_over_instance = game_over_scene.instantiate()
+		canvas_layer.add_child(game_over_instance)
+	else:
+		var new_canvas = CanvasLayer.new()
+		get_parent().add_child(new_canvas)
+		var game_over_instance = game_over_scene.instantiate()
+		new_canvas.add_child(game_over_instance)
