@@ -38,10 +38,8 @@ func _on_area_entered(area: Area2D) -> void:
 		#la referencia a player es guardada por enemigo torreta cuando
 		#cuando este observa que entran a su area, guarda estos datos de player y "comunica"
 		if player:
-			# player.balas_destruidas += 1
-			player.charger.value += 1
-			#Debug.log("enemigo volador destruido " + str(player.balas_destruidas))
-			Debug.log("enemigo volador destruido " + str(int(player.charger.value)))
+			player.balas_destruidas += 1
+			Debug.log("bala destruida " + str(player.balas_destruidas))
 		
 			
 		queue_free()

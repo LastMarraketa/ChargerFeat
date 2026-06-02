@@ -24,11 +24,6 @@ func next_level() -> void:
 		credits()
 
 
-func has_next_level() -> bool:
-	return current_level + 1 < levels.size() - 1
-
-
-
 func main_menu() -> void:
 	get_tree().change_scene_to_packed(main_menu_scene)
 

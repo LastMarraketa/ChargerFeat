@@ -21,10 +21,6 @@ var state = State.MOVE
 @export var melee_attack_scene: PackedScene # <-- Asigna aquí la escena del SLASH
 var is_attacking_melee: bool = false        # <-- Nueva variable de control visual para SLASH
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
-var game_over_scene: PackedScene = preload("res://ui/game_over_menu.tscn")
-var level_complete_scene: PackedScene = preload("res://ui/level_complete_menu.tscn")
-
-
 
 
 var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
@@ -51,8 +47,7 @@ var _was_on_floor: bool = false
 var bala_viva = null
 var gas: bool = false #para impulsarse en el aire
 var moving = false
-#balas absorbidas ahoras lo debería ver el Charger
-#var balas_destruidas = 0
+var balas_destruidas = 0
 var shield_active: bool = false
 var shield_cooldown: bool = false
 var absorbed_bullets: int = 0
@@ -73,7 +68,6 @@ var shield_cooldown_timer: Timer
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_component: HealthComponent = $HealthComponent
 var target_marker: Marker2D = null
-@onready var charger: Charger = $Charger # barra de carga, maneja las balas absorbidas
 
 #signal free_marker
 
@@ -96,11 +90,6 @@ func _ready() -> void:
 	shield_cooldown_timer.wait_time = shield_cooldown_time
 	shield_cooldown_timer.timeout.connect(_on_cooldown_timeout)
 	add_child(shield_cooldown_timer)
-	
-	charger.full_charge.connect(_on_full_charge)
-	_setup_level_ui()
-
-
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
@@ -230,7 +219,7 @@ func _move(delta: float) -> void:
 #esta es la accion de ataque slash
 	if Input.is_action_just_pressed("slash") and not is_attacking_melee:
 		_execute_melee_attack()
-	if Input.is_action_just_pressed("dash_to_kill") and not is_attacking_melee and dash_ready:
+	if Input.is_action_just_pressed("dash_to_kill") and not is_attacking_melee:
 		_execute_dash_attack()
 	if Input.is_action_just_pressed("toggle_shield") and not shield_active and not shield_cooldown:
 		_activate_shield()
@@ -350,11 +339,8 @@ func _on_health_changed(value: int) -> void:
 
 
 func _on_player_died() -> void:
-	hide()
-	set_physics_process(false)
-	set_process_unhandled_input(false)
-	Game.player_died.emit()
-
+	queue_free()
+	Debug.log("me moriii :C")
 
 
 func _activate_shield() -> void:
@@ -378,22 +364,3 @@ func absorb_bullet() -> void:
 	if absorbed_bullets < max_absorbed_bullets:
 		absorbed_bullets += 1
 		Debug.log("Bala absorbida: " + str(absorbed_bullets) + "/" + str(max_absorbed_bullets))
-	
-func _on_full_charge() -> void:
-	dash_ready = true
-
-
-func _setup_level_ui() -> void:
-	var canvas_layer = get_parent().find_child("CanvasLayer", true, false)
-	if canvas_layer:
-		var game_over_instance = game_over_scene.instantiate()
-		canvas_layer.add_child(game_over_instance)
-		var level_complete_instance = level_complete_scene.instantiate()
-		canvas_layer.add_child(level_complete_instance)
-	else:
-		var new_canvas = CanvasLayer.new()
-		get_parent().add_child(new_canvas)
-		var game_over_instance = game_over_scene.instantiate()
-		new_canvas.add_child(game_over_instance)
-		var level_complete_instance = level_complete_scene.instantiate()
-		new_canvas.add_child(level_complete_instance)

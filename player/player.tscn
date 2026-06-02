@@ -589,8 +589,15 @@ theme_type_variation = &"HealthBar"
 step = 1.0
 show_percentage = false
 
-[node name="Charger" parent="." unique_id=202495474 instance=ExtResource("16_32hag")]
-offset_left = -63.0
-offset_top = -44.0
-offset_right = -27.0
-offset_bottom = -8.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1841868373]
+offset_left = -81.0
+offset_top = -32.0
+offset_right = -45.0
+offset_bottom = 4.0
+max_value = 6.0
+value = 2.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("16_e7oew")
+texture_over = ExtResource("17_c35mf")
+texture_progress = ExtResource("18_65viv")
