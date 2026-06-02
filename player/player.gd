@@ -28,8 +28,12 @@ var level_complete_scene: PackedScene = preload("res://ui/level_complete_menu.ts
 
 
 var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso 
-var dash_origin: Vector2 = Vector2.ZERO #estas 2 variables limitan el dash attack
-var dash_distance: float = 1000.0 #esto ajusta hasta donde se llega
+#var dash_origin: Vector2 = Vector2.ZERO #estas 2 variables limitan el dash attack
+#var dash_distance: float = 1000.0 #esto ajusta hasta donde se llega
+@onready var dashtimer: Timer = $dashtimer
+@onready var dash_particles: GPUParticles2D = $"Pivot/dash particles"
+
+
 var dash_ready: bool = false #maneja cuando el dash es usable (con carga completa)
 
 
@@ -82,7 +86,7 @@ func _ready() -> void:
 	health_bar.max_value = health_component.max_health
 	_on_health_changed(health_component.health)
 	#free_marker.connect(func(): target_marker = null)
-	
+	dashtimer.timeout.connect(_on_time_to_kill_timeout)
 	shield_duration_timer = Timer.new()
 	shield_duration_timer.one_shot = true
 	shield_duration_timer.wait_time = shield_duration
@@ -163,12 +167,7 @@ func _move(delta: float) -> void:
 			#velocity = Vector2.ZERO                       
 			Debug.log("¡Teletransporte!")   
 	
-	#proceso de limitar el ataque dash 
-	if is_dashing_to_kill:
-		if global_position.distance_to(dash_origin) >= dash_distance:
-			is_dashing_to_kill = false
-			velocity = Vector2.ZERO
-			hurtbox_component.set_deferred("monitoring", true)
+	
 			
 			
 	if Input.is_action_just_pressed("move_toward"):
@@ -334,10 +333,16 @@ func _execute_dash_attack() -> void:
 	hurtbox_component.set_deferred("monitoring", false)
 	var mouse_dir = global_position.direction_to(get_global_mouse_position())
 	velocity = mouse_dir * 5000
-	dash_origin = global_position
+	dashtimer.start()
+	dash_particles.emitting = true
 	charger.value = 0.0
-	dash_ready = false
+	#dash_ready = false
 	
+func _on_time_to_kill_timeout() -> void:
+	is_dashing_to_kill = false
+	velocity = Vector2.ZERO
+	hurtbox_component.set_deferred("monitoring", true)
+	dash_particles.emitting = false
 	
 #################################################################################
 #################################################################################	
