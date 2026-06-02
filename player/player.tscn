@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="8_dw050"]
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="12_ebec5"]
 [ext_resource type="AudioStream" uid="uid://veweicylagko" path="res://dragon-studio-cartoon-jump-463196.mp3" id="12_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://dn6fnclpcdsvw" path="res://assets/sprites/Pixel Art Skill Animations - Lightning/VFX5/Sprite-sheet/Sprite-sheet.png" id="13_c35mf"]
 [ext_resource type="Texture2D" uid="uid://btey4ruglplms" path="res://assets/sprites/charger/charger_bg.png" id="16_e7oew"]
 [ext_resource type="Texture2D" uid="uid://cmh3fqifb71b7" path="res://assets/sprites/charger/charger_fg.png" id="17_c35mf"]
 [ext_resource type="Texture2D" uid="uid://60bib5y1fn78" path="res://assets/sprites/charger/charge_fill.png" id="18_65viv"]
@@ -460,10 +461,21 @@ node_connections = [&"output", 0, &"fire", &"fire", 0, &"movement", &"fire", 1, 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw050"]
 size = Vector2(48, 86.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_65viv"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b26j0"]
-size = Vector2(36, 81)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x7c3f"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 6.7799997
+anim_speed_max = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
 
 [node name="Player" type="CharacterBody2D" unique_id=111671453]
 position = Vector2(3, 1)
@@ -519,6 +531,15 @@ texture = ExtResource("1_4flbx")
 position = Vector2(43, -5)
 gizmo_extents = 20.4
 
+[node name="dash particles" type="GPUParticles2D" parent="Pivot" unique_id=1423320900]
+material = SubResource("CanvasItemMaterial_65viv")
+position = Vector2(4, 0)
+emitting = false
+amount = 120
+texture = ExtResource("13_c35mf")
+lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_x7c3f")
+
 [node name="JumpStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=761926419]
 stream = ExtResource("12_kb6p2")
 volume_db = -5.0
@@ -537,10 +558,6 @@ script = ExtResource("8_dw050")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://d26yj0mh06tpn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1063677956]
-position = Vector2(0, 3.5)
-shape = SubResource("RectangleShape2D_b26j0")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=964291719]
 process_callback = 0
 position_smoothing_enabled = true
@@ -551,6 +568,10 @@ one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=1714992921]
 wait_time = 0.2
+one_shot = true
+
+[node name="dashtimer" type="Timer" parent="." unique_id=1820704172]
+wait_time = 0.3
 one_shot = true
 
 [node name="HealthComponent" type="Node" parent="." unique_id=355661053]
