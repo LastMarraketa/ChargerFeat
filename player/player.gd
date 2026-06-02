@@ -336,7 +336,7 @@ func _execute_dash_attack() -> void:
 	dashtimer.start()
 	dash_particles.emitting = true
 	charger.value = 0.0
-	#dash_ready = false
+	dash_ready = false
 	
 func _on_time_to_kill_timeout() -> void:
 	is_dashing_to_kill = false
