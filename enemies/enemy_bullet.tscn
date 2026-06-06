@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1t4xfqonxioa" path="res://enemies/enemy_bullet.gd" id="1_qadii"]
 [ext_resource type="Texture2D" uid="uid://d3k3o54lsp6gr" path="res://assets/sprites/Pixel Art VFX - Blood Mage - FREE Version/VFX3/sprite-sheet.png" id="2_qadii"]
+[ext_resource type="AudioStream" uid="uid://ccdl4x38gudo7" path="res://assets/audio/snuff.mp3" id="3_45xi0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xnav5"]
 
@@ -114,3 +115,7 @@ libraries/ = SubResource("AnimationLibrary_xnav5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="time to kill area enemy bullet" unique_id=531165785]
 shape = SubResource("CircleShape2D_qadii")
+
+[node name="SnuffStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2106395211]
+stream = ExtResource("3_45xi0")
+volume_db = 1.5

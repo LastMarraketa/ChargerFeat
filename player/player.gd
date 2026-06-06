@@ -59,16 +59,22 @@ var shield_active: bool = false
 var shield_cooldown: bool = false
 var absorbed_bullets: int = 0
 @export var max_absorbed_bullets: int = 6
-@export var shield_duration: float = 3.0
+@export var shield_duration: float = 300.0
 @export var shield_cooldown_time: float = 5.0
 var shield_duration_timer: Timer
 var shield_cooldown_timer: Timer
+@onready var camera_2d: Camera2D = $Camera2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/movement/playback"]
 @onready var pivot: Node2D = $Pivot
 @onready var jump_stream_player: AudioStreamPlayer = $JumpStreamPlayer
+@onready var slash_stream_player: AudioStreamPlayer = $SlashStreamPlayer
+@onready var dash_stream_player: AudioStreamPlayer = $DashStreamPlayer
+@onready var whoosh_stream_player: AudioStreamPlayer = $whooshStreamPlayer
+
+
 @onready var hitbox_component: HitboxComponent = $Pivot/HitboxComponent
 @onready var bullet_spawn_marker: Marker2D = $Pivot/BulletSpawnMarker
 @onready var coyote_timer: Timer = $CoyoteTimer
@@ -80,6 +86,7 @@ var target_marker: Marker2D = null
 #signal free_marker
 
 func _ready() -> void:
+	
 	hitbox_component.damage_dealt.connect(_on_damage_dealt)
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_player_died)
@@ -115,6 +122,7 @@ func _physics_process(delta: float) -> void:
 		State.WALL_JUMP:
 			_wall_jump(delta)
 	
+	camera_2d.offset= (get_global_mouse_position()-global_position)/30
 
 func _wall_jump(_delta: float) -> void:
 	pass
@@ -177,6 +185,7 @@ func _move(delta: float) -> void:
 	if target_marker and moving:
 		var marker_direction = global_position.direction_to(target_marker.global_position)
 		velocity = marker_direction * 3 * speed
+		
 		#if global_position.distance_to(target_marker.global_position) < 70:
 			#moving = false
 
@@ -211,6 +220,7 @@ func _move(delta: float) -> void:
 	
 	if has_spear and not firing and not is_attacking_melee and Input.is_action_just_pressed("fire"):
 		#if ammo==true:
+			whoosh_stream_player.play()
 			animation_tree["parameters/fire/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			pivot.scale.x = sign(get_global_mouse_position().x - global_position.x)
 		#else:
@@ -316,6 +326,7 @@ func _execute_melee_attack() -> void:
 	
 	# Rotación omnidireccional (360°) exacta hacia el mouse
 	ataque.global_rotation = attack_direction.angle()
+	slash_stream_player.play()
 	
 	# 4. Cuando el tajo termine y se destruya, el jugador puede volver a voltearse libremente
 	ataque.tree_exited.connect(func(): is_attacking_melee = false)
@@ -337,12 +348,15 @@ func _execute_dash_attack() -> void:
 	dash_particles.emitting = true
 	charger.value = 0.0
 	dash_ready = false
+	moving=false
+	dash_stream_player.play()
 	
 func _on_time_to_kill_timeout() -> void:
 	is_dashing_to_kill = false
 	velocity = Vector2.ZERO
 	hurtbox_component.set_deferred("monitoring", true)
 	dash_particles.emitting = false
+	dash_stream_player.stop()
 	
 #################################################################################
 #################################################################################	
@@ -364,14 +378,14 @@ func _activate_shield() -> void:
 	shield_active = true
 	shield_duration_timer.start()
 	pivot.modulate = Color(0.3, 0.7, 1.0, 0.7)
-
+	hurtbox_component.set_deferred("monitoring", false)
 
 func _on_shield_timeout() -> void:
 	shield_active = false
 	pivot.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	shield_cooldown = true
 	shield_cooldown_timer.start()
-
+	hurtbox_component.set_deferred("monitoring", true)
 
 func _on_cooldown_timeout() -> void:
 	shield_cooldown = false

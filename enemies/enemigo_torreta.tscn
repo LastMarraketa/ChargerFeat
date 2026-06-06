@@ -157,7 +157,7 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4, 0.5, 0.59999996, 0.7, 0.79999995, 0.9, 1, 1.1, 1.1999999),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.33333334, 0.4, 0.46666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
@@ -276,6 +276,11 @@ _data = {
 &"idle": SubResource("Animation_hwlhq")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cshgs"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_f2d86"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gqaae"]
 animation = &"idle"
 
@@ -288,11 +293,24 @@ states/idle/node = SubResource("AnimationNodeAnimation_gqaae")
 states/idle/position = Vector2(509, 92)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_grk76")]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f2d86"]
+animation = &"Spawn"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_cshgs"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f2d86"]
-graph_offset = Vector2(-613.1755, 68.06903)
+graph_offset = Vector2(-473.52597, 52.757763)
 nodes/idle/node = SubResource("AnimationNodeStateMachine_cshgs")
 nodes/idle/position = Vector2(-580, 260)
-node_connections = [&"output", 0, &"idle"]
+nodes/spawn/node = SubResource("AnimationNodeOneShot_cshgs")
+nodes/spawn/position = Vector2(-48, 336)
+"nodes/spawn anim/node" = SubResource("AnimationNodeAnimation_f2d86")
+"nodes/spawn anim/position" = Vector2(-208, 512)
+nodes/death/node = SubResource("AnimationNodeOneShot_f2d86")
+nodes/death/position = Vector2(251.34189, 370.71994)
+"nodes/death anim/node" = SubResource("AnimationNodeAnimation_cshgs")
+"nodes/death anim/position" = Vector2(112, 544)
+node_connections = [&"output", 0, &"death", &"spawn", 0, &"idle", &"spawn", 1, &"spawn anim", &"death", 0, &"spawn", &"death", 1, &"death anim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grk76"]
 size = Vector2(63.61667, 33.383335)
@@ -326,6 +344,12 @@ libraries/ = SubResource("AnimationLibrary_30mnd")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=611657283]
 tree_root = SubResource("AnimationNodeBlendTree_f2d86")
 anim_player = NodePath("../AnimationPlayer")
+parameters/spawn/active = false
+parameters/spawn/internal_active = false
+parameters/spawn/request = 0
+parameters/death/active = false
+parameters/death/internal_active = false
+parameters/death/request = 0
 
 [node name="Detection area" type="Area2D" parent="." unique_id=589039728]
 
@@ -335,7 +359,7 @@ scale = Vector2(30, 30)
 shape = SubResource("RectangleShape2D_grk76")
 
 [node name="fire timer" type="Timer" parent="." unique_id=995510038]
-wait_time = 0.5
+wait_time = 0.1
 
 [node name="bullet spawn" type="Marker2D" parent="." unique_id=1181341337]
 position = Vector2(-52, -20)
@@ -347,5 +371,5 @@ position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_cshgs")
 
 [node name="spawn timer" type="Timer" parent="." unique_id=430170974]
-wait_time = 3.0
+wait_time = 2.239
 autostart = true
