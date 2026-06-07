@@ -5,6 +5,8 @@ extends Enemy
 
 func _ready() -> void:
 	health_component.died.connect(_on_enemy_died)
+	speed = 500
+	acceleration = 2000
 
 func _physics_process(delta: float) -> void:
 	

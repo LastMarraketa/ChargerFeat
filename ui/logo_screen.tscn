@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://uidpdljn8fql"]
+
+[ext_resource type="Texture2D" uid="uid://bjqhugocdwrfr" path="res://assets/sprites/logo/logoM.png" id="1_ise6r"]
+[ext_resource type="Script" uid="uid://c121v6kfjk3hv" path="res://ui/logo_screen.gd" id="1_ou77e"]
+[ext_resource type="Texture2D" uid="uid://bac8i7tl5i2gt" path="res://assets/sprites/logo/logoS.png" id="2_ou77e"]
+[ext_resource type="Texture2D" uid="uid://b13vruegtd5ey" path="res://assets/sprites/logo/logoB.png" id="3_uhfqe"]
+[ext_resource type="Texture2D" uid="uid://dmkfnxrpraonr" path="res://assets/sprites/logo/Logo.png" id="4_kwws0"]
+[ext_resource type="Texture2D" uid="uid://c0u0b6doss5j8" path="res://assets/sprites/logo/logosoft.png" id="5_dc68t"]
+
+[node name="Control" type="Control" unique_id=1125071281]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ou77e")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=413322821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2098571910]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpriteM" type="Sprite2D" parent="CenterContainer" unique_id=1325863150]
+position = Vector2(-800, 250)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ise6r")
+
+[node name="SpriteS" type="Sprite2D" parent="CenterContainer" unique_id=2061828161]
+position = Vector2(650, 2040)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ou77e")
+
+[node name="SpriteB" type="Sprite2D" parent="CenterContainer" unique_id=464162491]
+position = Vector2(2100, 830)
+scale = Vector2(2, 2)
+texture = ExtResource("3_uhfqe")
+
+[node name="Spritelogo" type="Sprite2D" parent="CenterContainer" unique_id=2013628760]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(1200, 450)
+texture = ExtResource("4_kwws0")
+
+[node name="Spritesoft" type="Sprite2D" parent="CenterContainer" unique_id=1256037813]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(1000, 850)
+scale = Vector2(2, 2)
+texture = ExtResource("5_dc68t")
+
+[node name="LogoTimer" type="Timer" parent="." unique_id=1495744094]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="EndTimer" type="Timer" parent="." unique_id=988725401]
+wait_time = 2.0
+one_shot = true

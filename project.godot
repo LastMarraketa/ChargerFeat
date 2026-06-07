@@ -34,6 +34,10 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/juans/Documents/GitHub/HITO-1/movies/logo_scene.avi"
+
 [gui]
 
 theme/custom="uid://dvhkimwoy5bag"
@@ -132,6 +136,7 @@ dash_to_kill={
 2d_physics/layer_5="TerrenoBala"
 2d_physics/layer_6="special_enemy"
 2d_physics/layer_8="Upgrades"
+2d_physics/layer_9="destructible_terrain"
 
 [physics]
 

@@ -25,6 +25,7 @@ radius = 77.00649
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_chasing")
+speed = 400
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493116408]
 position = Vector2(0, -1)

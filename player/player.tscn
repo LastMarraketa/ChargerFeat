@@ -504,7 +504,7 @@ parameters/TimeScale/scale = 4.0
 
 [node name="HitboxComponent" type="Area2D" parent="Pivot" unique_id=1968443068]
 position = Vector2(24, -7)
-collision_layer = 4
+collision_layer = 260
 collision_mask = 0
 script = ExtResource("5_1jxqw")
 damage = 20
