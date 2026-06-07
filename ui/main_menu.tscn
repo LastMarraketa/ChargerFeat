@@ -36,12 +36,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1579247744]
 layout_mode = 2
 theme_type_variation = &"Title"
-text = "Game"
+theme_override_font_sizes/font_size = 80
+text = "Charger feat"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=733980409]
 layout_mode = 2
-text = "still untitled :v"
+size_flags_horizontal = 4
+text = "finally titled :v"
 
 [node name="Demo" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1715431782]
 unique_name_in_owner = true
