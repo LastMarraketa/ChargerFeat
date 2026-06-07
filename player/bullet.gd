@@ -13,6 +13,8 @@ extends Area2D
 @onready var timerdeteccion: Timer = $timerdeteccion
 
 
+
+
 #por mientras+
 @onready var deteccion: Area2D = $deteccion
 var player_in_range: bool = false
@@ -54,6 +56,7 @@ func _tiempo_de_gracia() -> void:
 func _on_player_detected(body: Node2D) -> void:
 	if body is Player and t_gracia == true:
 		Debug.log("jugador encontro bala")
+		
 		queue_free()
 		
 func _on_body_entered(body:Node2D)->void:

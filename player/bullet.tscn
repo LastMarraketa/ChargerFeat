@@ -83,3 +83,5 @@ shape = SubResource("CircleShape2D_boyjm")
 [node name="timerdeteccion" type="Timer" parent="." unique_id=112319981]
 wait_time = 0.288
 autostart = true
+
+[node name="splatStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1401365153]
