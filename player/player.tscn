@@ -486,6 +486,7 @@ data = PackedByteArray("//vQxAAAKv2hJhXMgA6Us2PTP9ABNeocwWfjf1kPVc4+ltDv0yNuIAw4
 
 [node name="Player" type="CharacterBody2D" unique_id=111671453]
 position = Vector2(3, 1)
+collision_layer = 257
 script = ExtResource("1_onrkg")
 jump_speed = 500
 acceleration = 1000
@@ -510,7 +511,7 @@ parameters/TimeScale/scale = 3.0
 
 [node name="HitboxComponent" type="Area2D" parent="Pivot" unique_id=1968443068]
 position = Vector2(24, -7)
-collision_layer = 260
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("5_1jxqw")
 damage = 20

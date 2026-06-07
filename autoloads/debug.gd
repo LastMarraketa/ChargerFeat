@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func log(message: Variant, seconds: float = 2) -> void:
-	if not OS.is_debug_build():
+	if not OS.is_debug_build() or OS.has_feature("movie"):
 		return
 	if is_online():
 		var prefix = _get_prefix()

@@ -23,6 +23,7 @@ var player_in_range: bool = false
 
 @export var speed: float = 3000.0 #velocidad de la bala
 var esta_pegado: bool = false  #variable de si esta pegado a algo, por defecto es falso
+var ya_pegado: bool = false #varible de si ya se ha pegado a algo (evita que la lanza se traspase a terreno)
 
 func _ready() -> void:
 	# Conectamos la señal de colisión con cuerpos físicos (TileMaps, StaticBodies, etc.)
@@ -42,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	var direction = global_transform.x 
 	if not esta_pegado: 
 		global_position += direction * speed * delta #si no esta pegado, se acelera en esa dirección
-	if ray_cast_2d.is_colliding():
+	if ray_cast_2d.is_colliding() and not ya_pegado:
 		var objeto = $RayCast2D.get_collider()
 		_pegarse(objeto)
 		ray_cast_2d.enabled = false
@@ -71,7 +72,7 @@ func _on_body_entered(body:Node2D)->void:
 func _pegarse(target: Node2D) -> void:
 	#cambio el estado a True
 	esta_pegado = true
-	
+	ya_pegado = true
 	
 	#guardo la info antes de pegarse para que no haga cosas raras al hacerse hijo de otros nodos
 	var escala_global_original = global_scale
