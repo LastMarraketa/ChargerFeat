@@ -343,7 +343,7 @@ frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=126512639]
 libraries/ = SubResource("AnimationLibrary_g6ky6")
-speed_scale = 3.013
+speed_scale = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=780710143]
 position = Vector2(39.980824, 0)

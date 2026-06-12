@@ -122,7 +122,7 @@ func _physics_process(delta: float) -> void:
 		State.WALL_JUMP:
 			_wall_jump(delta)
 	
-	camera_2d.offset= (get_global_mouse_position()-global_position)/30
+	camera_2d.offset= (get_global_mouse_position()-global_position)/15
 
 func _wall_jump(_delta: float) -> void:
 	pass
@@ -242,6 +242,8 @@ func _move(delta: float) -> void:
 #esta es la accion de ataque slash
 	if Input.is_action_just_pressed("slash") and not is_attacking_melee:
 		_execute_melee_attack()
+		var mouse_dir_counter = global_position.direction_to(get_global_mouse_position())
+		velocity = mouse_dir_counter * 50
 	if Input.is_action_just_pressed("dash_to_kill") and not is_attacking_melee and dash_ready:
 		_execute_dash_attack()
 	if Input.is_action_just_pressed("toggle_shield") and not shield_active and not shield_cooldown:
