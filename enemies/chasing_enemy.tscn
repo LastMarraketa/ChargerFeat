@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://cjs3r8p8ejsuq" path="res://enemies/chasing_enemy.gd" id="1_chasing"]
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="2_xsfoe"]
 [ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="3_l4ld1"]
-[ext_resource type="Texture2D" uid="uid://kcrstson0ogr" path="res://assets/sprites/Dungeon Gathering Free Version/Vase Shine Anim.png" id="4_8b31c"]
+[ext_resource type="Texture2D" uid="uid://b4q7fcm256tlf" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Idle.png" id="4_idle"]
+[ext_resource type="Texture2D" uid="uid://dj2hsrc71qmeu" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Walk.png" id="5_walk"]
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="5_3mpfr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chasing"]
@@ -20,6 +21,134 @@ radius = 800.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhohw"]
 radius = 77.00649
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_idle")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_idle")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_walk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_enemy"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"idle": SubResource("Animation_idle"),
+&"walk": SubResource("Animation_walk")
+}
 
 [node name="ChasingEnemy" type="CharacterBody2D" unique_id=1024242327]
 collision_layer = 4
@@ -52,11 +181,11 @@ shape = SubResource("RectangleShape2D_hit")
 [node name="Pivot" type="Node2D" parent="." unique_id=478057743]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=16970863]
-modulate = Color(1, 0, 0, 1)
+position = Vector2(11, -26)
 scale = Vector2(4, 4)
-texture = ExtResource("4_8b31c")
-hframes = 16
-frame = 4
+texture = ExtResource("4_idle")
+hframes = 11
+frame = 0
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1280504186]
 collision_layer = 0
@@ -75,3 +204,7 @@ max_health = 20
 [node name="CollisionShape2D" type="CollisionShape2D" parent="time to kill area chasing enemy" unique_id=1664865272]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_fhohw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1184744250]
+libraries/ = SubResource("AnimationLibrary_enemy")
+autoplay = "idle"

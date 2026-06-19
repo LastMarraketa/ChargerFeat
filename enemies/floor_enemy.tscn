@@ -62,3 +62,46 @@ script = ExtResource("4_3mpfr")
 health = 20
 max_health = 20
 metadata/_custom_type_script = "uid://blnpvqimev7d0"
+collision_mask = 32
+script = ExtResource("2_xsfoe")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://d26yj0mh06tpn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=98891645]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_07tka")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1681966307]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_l4ld1")
+metadata/_custom_type_script = "uid://bng1gwg0xgpto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=533011693]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_3t1x0")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1758106683]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=1494521632]
+position = Vector2(11, -26)
+scale = Vector2(4, 4)
+texture = ExtResource("4_idle")
+hframes = 11
+frame = 0
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot" unique_id=295051641]
+position = Vector2(48, 17)
+target_position = Vector2(0, 30)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1956524116]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1615420134]
+script = ExtResource("4_3mpfr")
+health = 20
+max_health = 20
+metadata/_custom_type_script = "uid://blnpvqimev7d0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1184744250]
+libraries/ = SubResource("AnimationLibrary_enemy")
+autoplay = "idle"
