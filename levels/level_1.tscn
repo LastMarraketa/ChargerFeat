@@ -9,9 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://bbg3tyfgxrujp" path="res://enemies/floor_enemy.tscn" id="6_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cjxh0blecs0ap" path="res://enemies/wall_enemy.tscn" id="7_l53as"]
 [ext_resource type="PackedScene" path="res://enemies/chasing_enemy.tscn" id="8_chasing"]
+[ext_resource type="PackedScene" uid="uid://cb3tyfgxrujp" path="res://levels/parallax_background.tscn" id="9_parallax"]
+
 
 [node name="Level1" type="Node2D" unique_id=1046795863]
 script = ExtResource("1_l53as")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("9_parallax")]
+
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1703618807]
 scale = Vector2(4, 4)

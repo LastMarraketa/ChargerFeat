@@ -6,8 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://stdfajjojk45" path="res://gameplay/goal.tscn" id="4_v5uil"]
 [ext_resource type="PackedScene" uid="uid://dsenkcn2o2beu" path="res://ui/hud.tscn" id="5_5722l"]
 [ext_resource type="PackedScene" uid="uid://b8d8obw4dd2u" path="res://enemies/boss.tscn" id="6_ilhis"]
+[ext_resource type="PackedScene" uid="uid://cb3tyfgxrujp" path="res://levels/parallax_background.tscn" id="7_parallax"]
+
 
 [node name="Level2" type="Node2D" unique_id=1046795863]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("7_parallax")]
+
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1703618807]
 scale = Vector2(4, 4)
