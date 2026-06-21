@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, move_input * speed, acceleration * delta)
 	
 	move_and_slide()
+	update_animation()
 	
 	if is_on_floor() and not ray_cast_2d.is_colliding():
 		pivot.scale.x *= -1

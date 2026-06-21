@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 	
 	move_and_slide()
+	update_animation()
 
 func _on_time_to_kill_chasing_enemy(body: Node2D) -> void:
 	if (body is Player) and ( body.is_dashing_to_kill == true ):
