@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://2s4kbo6c4dit" path="res://assets/audio/eaglaxle-gaming-victory-464016.mp3" id="2_jo1fa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tq3u"]
-size = Vector2(68, 122)
+size = Vector2(478, 344)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t8vge"]
 atlas = ExtResource("1_8tq3u")
@@ -66,7 +66,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hvf6b")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 20.0
 }]

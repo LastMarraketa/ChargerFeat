@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cmh3fqifb71b7" path="res://assets/sprites/charger/charger_fg.png" id="2_agvbt"]
 [ext_resource type="Texture2D" uid="uid://60bib5y1fn78" path="res://assets/sprites/charger/charge_fill.png" id="3_oij5p"]
 [ext_resource type="Script" uid="uid://c52qtoi2k3iqp" path="res://player/charger.gd" id="4_qgj3h"]
+[ext_resource type="Script" uid="uid://w8qb0b1welds" path="res://player/label.gd" id="5_agvbt"]
 
 [node name="Charger" type="TextureProgressBar" unique_id=202495474]
 offset_right = 36.0
@@ -15,3 +16,12 @@ texture_over = ExtResource("2_agvbt")
 texture_progress = ExtResource("3_oij5p")
 tint_under = Color(0.1, 0.19666667, 0.2, 1)
 script = ExtResource("4_qgj3h")
+
+[node name="Label" type="Label" parent="." unique_id=90195739]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 50.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 32
+script = ExtResource("5_agvbt")

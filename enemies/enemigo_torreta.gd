@@ -10,6 +10,7 @@ extends Enemy
 @onready var time_to_kill_area_turret: Area2D = $"time to kill area turret"
 
 @export var flying_mini_scene: PackedScene
+@export var full_charge_requirement: int
 @onready var spawn_timer: Timer = $"spawn timer"
 
 #aca se guarda la posicion del jugador mientras esta dentro del area 
@@ -39,7 +40,8 @@ func _ready() -> void:
 	
 	
 func _spawn() -> void:
-	if not flying_mini_scene:
+	#if not flying_mini_scene:
+	if not flying_mini_scene or not player_in_range or not is_instance_valid(player_ref):
 		return
 	animation_tree["parameters/spawn/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	var spawn_mini = flying_mini_scene.instantiate()
@@ -48,7 +50,9 @@ func _spawn() -> void:
 	
 	
 func _on_time_to_kill_turret(body: Node2D) -> void:
-	if (body is Player) and ( body.is_dashing_to_kill == true ):
+	if (body is Player) and ( body.is_dashing_to_kill == true ) and (Game.full_charges >= full_charge_requirement):
+		Game.full_charge_limit += 1
+		Debug.log("Nuevo límite de cargas completas: "+str(Game.full_charge_limit))
 		animation_tree["parameters/death/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		await animation_tree.animation_finished
 		queue_free() 

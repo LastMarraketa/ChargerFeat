@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://btrgwi4h8pfnt"]
 
 [ext_resource type="Script" uid="uid://bp3luwqyl8b4h" path="res://autoloads/level_manager.gd" id="1_swoet"]
-[ext_resource type="PackedScene" uid="uid://ysxmx7ksrswb" path="res://levels/level_1.tscn" id="2_jmqug"]
 [ext_resource type="PackedScene" uid="uid://byk7mffodrktd" path="res://ui/main_menu.tscn" id="2_stu7j"]
 [ext_resource type="PackedScene" uid="uid://crfin475mvk1e" path="res://ui/credits.tscn" id="3_gn3j0"]
-[ext_resource type="PackedScene" uid="uid://dow0bv7ac0spj" path="res://levels/level_2.tscn" id="3_stu7j"]
+[ext_resource type="PackedScene" uid="uid://dsq7at8c787m4" path="res://levels/STAGE1.tscn" id="4_nkaav"]
+[ext_resource type="PackedScene" uid="uid://dtjnjb16632il" path="res://levels/STAGE2.tscn" id="5_53vxa"]
 [ext_resource type="PackedScene" uid="uid://6nrrawa283k4" path="res://levels/demo_level.tscn" id="6_gty5d"]
+[ext_resource type="PackedScene" uid="uid://p4h6acm52cmo" path="res://levels/STAGE3.tscn" id="6_vg1pt"]
 
 [node name="LevelManager" type="Node" unique_id=929241974]
 script = ExtResource("1_swoet")
 main_menu_scene = ExtResource("2_stu7j")
 credits_scene = ExtResource("3_gn3j0")
-levels = Array[PackedScene]([ExtResource("2_jmqug"), ExtResource("3_stu7j"), ExtResource("6_gty5d")])
+levels = Array[PackedScene]([ExtResource("4_nkaav"), ExtResource("5_53vxa"), ExtResource("6_vg1pt"), ExtResource("6_gty5d")])

@@ -46,9 +46,9 @@ func _on_area_entered(area: Area2D) -> void:
 		#cuando este observa que entran a su area, guarda estos datos de player y "comunica"
 		if player:
 			# player.balas_destruidas += 1
-			player.charger.value += 1
+			Game.charge += 1
 			#Debug.log("enemigo volador destruido " + str(player.balas_destruidas))
-			Debug.log("enemigo volador destruido " + str(int(player.charger.value)))
+			Debug.log("enemigo volador destruido " + str(int(Game.charge)))
 		
 		
 		queue_free()

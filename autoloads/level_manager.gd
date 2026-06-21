@@ -7,8 +7,8 @@ extends Node
 var current_level = 0
 
 func playdemo() -> void:
-	current_level = 2
-	get_tree().change_scene_to_packed(levels[2])
+	current_level = 3
+	get_tree().change_scene_to_packed(levels[3])
 
 func start() -> void:
 	current_level = 0

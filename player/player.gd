@@ -348,7 +348,8 @@ func _execute_dash_attack() -> void:
 	velocity = mouse_dir * 5000
 	dashtimer.start()
 	dash_particles.emitting = true
-	charger.value = 0.0
+	Game.charge = 0.0
+	get_tree().create_timer(1.0).timeout.connect(_reset_full_charges)
 	dash_ready = false
 	moving=false
 	dash_stream_player.play()
@@ -416,3 +417,6 @@ func _setup_level_ui() -> void:
 		new_canvas.add_child(game_over_instance)
 		var level_complete_instance = level_complete_scene.instantiate()
 		new_canvas.add_child(level_complete_instance)
+
+func _reset_full_charges() -> void:
+	Game.full_charges = 0

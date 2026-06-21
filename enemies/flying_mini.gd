@@ -47,9 +47,9 @@ func _on_just_slashed(area: Area2D) -> void:
 		#cuando este observa que entran a su area, guarda estos datos de player y "comunica"
 		if player:
 			# player.balas_destruidas += 2
-			player.charger.value += 2
+			Game.charge += 2
 			#Debug.log("enemigo volador destruido " + str(player.balas_destruidas))
-			Debug.log("enemigo volador destruido " + str(int(player.charger.value)))
+			Debug.log("enemigo volador destruido " + str(int(Game.charge)))
 		queue_free()
 		
 		
