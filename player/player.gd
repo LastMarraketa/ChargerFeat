@@ -32,6 +32,7 @@ var is_dashing_to_kill: bool = false   #variable para manejar el dash poderoso
 #var dash_distance: float = 1000.0 #esto ajusta hasta donde se llega
 @onready var dashtimer: Timer = $dashtimer
 @onready var dash_particles: GPUParticles2D = $"Pivot/dash particles"
+@onready var charge_particles: GPUParticles2D = $"Pivot/charge particles"
 
 
 var dash_ready: bool = false #maneja cuando el dash es usable (con carga completa)
@@ -82,6 +83,18 @@ var shield_cooldown_timer: Timer
 @onready var health_component: HealthComponent = $HealthComponent
 var target_marker: Marker2D = null
 @onready var charger: Charger = $Charger # barra de carga, maneja las balas absorbidas
+
+#variables del full dash 
+@export var full_dash_hold_time: float = 2
+var full_dash_charging: bool = false
+var full_dash_hold_timer: float = 0.0
+var full_dash_meter_spent: float= 0.0
+@onready var charge_stream_player: AudioStreamPlayer = $chargeStreamPlayer
+@onready var fullcharge_stream_player: AudioStreamPlayer = $fullchargeStreamPlayer
+
+
+
+
 
 #signal free_marker
 
@@ -250,7 +263,9 @@ func _move(delta: float) -> void:
 		_activate_shield()
 	if move_input and not is_attacking_melee:
 		pivot.scale.x = sign(move_input)
-
+	#esto checkea todo el tiempo si se esta presionando para hacer full dash
+	_check_full_dash_hold(delta)
+	
 
 	#if move_input:
 		#pivot.scale.x = sign(move_input)
@@ -349,10 +364,45 @@ func _execute_dash_attack() -> void:
 	dashtimer.start()
 	dash_particles.emitting = true
 	Game.charge = 0.0
-	get_tree().create_timer(1.0).timeout.connect(_reset_full_charges)
+	get_tree().create_timer(0.1).timeout.connect(_consume_one_charge)
 	dash_ready = false
 	moving=false
 	dash_stream_player.play()
+	
+func _execute_full_dash_attack() -> void:
+	is_dashing_to_kill = true
+	hurtbox_component.set_deferred("monitoring", false)
+	var mouse_dir = global_position.direction_to(get_global_mouse_position())
+	velocity = mouse_dir * 10000
+	dashtimer.start()
+	dash_particles.emitting = true
+	Game.charge = 0.0
+	get_tree().create_timer(0.1).timeout.connect(_reset_full_charges)
+	dash_ready = false
+	moving=false
+	fullcharge_stream_player.play()
+
+func _check_full_dash_hold(delta: float) -> void:
+	if Input.is_action_pressed("full_dash") and not is_attacking_melee and dash_ready:
+		full_dash_charging = true
+		full_dash_hold_timer += delta
+		velocity = Vector2.ZERO
+		charge_particles.emitting = true
+		if not charge_stream_player.playing:
+			charge_stream_player.play()
+		move_and_slide()
+		
+		if full_dash_hold_timer >= full_dash_hold_time:
+			_execute_full_dash_attack()
+			full_dash_charging = false
+			full_dash_hold_timer = 0.0
+			charge_particles.emitting = false
+			charge_stream_player.stop()
+	else:
+		full_dash_charging = false
+		full_dash_hold_timer = 0.0
+		charge_particles.emitting = false
+		charge_stream_player.stop()
 	
 func _on_time_to_kill_timeout() -> void:
 	is_dashing_to_kill = false
@@ -420,3 +470,8 @@ func _setup_level_ui() -> void:
 
 func _reset_full_charges() -> void:
 	Game.full_charges = 0
+func _consume_one_charge() -> void:
+	if Game.full_charges > 0:
+		Game.full_charges -= 1
+	# si aún quedan pilas llenas, se puede volver a hacer dash sin esperar otra
+	dash_ready = Game.full_charges > 0

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cktwgff2q7w08" path="res://player/slash.tscn" id="2_wodsf"]
 [ext_resource type="Texture2D" uid="uid://bsfogd00kfa40" path="res://assets/sprites/Huntress/Sprites/Fall.png" id="4_yllr7"]
 [ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="5_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://b635snakk5vc3" path="res://assets/sprites/Pixel Art Skill Animations - Lightning/VFX6/Sprite-sheet/Sprite-sheet.png" id="5_65viv"]
 [ext_resource type="Texture2D" uid="uid://3l133j5ow4qu" path="res://assets/sprites/Huntress/Sprites/Attack3.png" id="5_ebec5"]
 [ext_resource type="Texture2D" uid="uid://by7lorhsg1vnn" path="res://assets/sprites/Huntress/Sprites/Run.png" id="6_ebec5"]
 [ext_resource type="Texture2D" uid="uid://kj703m2qb40g" path="res://assets/sprites/Huntress/Sprites/Idle.png" id="6_kb6p2"]
@@ -19,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://r41xh5tktrd2" path="res://assets/audio/yodguard-sword_slashing-6-382395.mp3" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://bro7w5k2p46yo" path="res://assets/audio/electric boom.mp3" id="18_e7oew"]
 [ext_resource type="AudioStream" uid="uid://qdp5ddw28x53" path="res://assets/audio/whoosh.mp3" id="19_c35mf"]
+[ext_resource type="AudioStream" uid="uid://jbvbdpggbxme" path="res://assets/audio/full_charge_sound.wav" id="20_bjvpn"]
+[ext_resource type="AudioStream" uid="uid://dsj8xm1t5bskf" path="res://assets/audio/charging_sound.wav" id="20_x7c3f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 20.0
@@ -447,7 +450,7 @@ animation = &"fire"
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ivps1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bwjto"]
-graph_offset = Vector2(-480.89072, 67.915184)
+graph_offset = Vector2(-567.567, -6.0167723)
 nodes/output/position = Vector2(432, 144)
 nodes/movement/node = ExtResource("7_nvl01")
 nodes/movement/position = Vector2(-440, 60)
@@ -475,6 +478,23 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 6.7799997
 anim_speed_max = 16.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yf5fn"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4v7s"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+particle_flag_disable_z = true
+particle_flag_inherit_emitter_scale = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+anim_speed_max = 3.3799999
+anim_offset_max = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
 
@@ -548,6 +568,15 @@ texture = ExtResource("13_c35mf")
 lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_x7c3f")
 
+[node name="charge particles" type="GPUParticles2D" parent="Pivot" unique_id=430953020]
+material = SubResource("CanvasItemMaterial_yf5fn")
+position = Vector2(0, -2)
+scale = Vector2(-0.50988686, 0.30120942)
+emitting = false
+amount = 19
+texture = ExtResource("5_65viv")
+process_material = SubResource("ParticleProcessMaterial_g4v7s")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=493082050]
 collision_layer = 2
 
@@ -612,8 +641,16 @@ volume_db = -10.0
 
 [node name="DashStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1490529854]
 stream = ExtResource("18_e7oew")
-volume_db = -9.0
+volume_db = -20.0
 bus = &"SFX"
+
+[node name="fullchargeStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2010425956]
+stream = ExtResource("20_bjvpn")
+volume_db = -6.0
+
+[node name="chargeStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=18294268]
+stream = ExtResource("20_x7c3f")
+volume_db = -5.0
 
 [node name="whooshStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=325811955]
 stream = ExtResource("19_c35mf")
