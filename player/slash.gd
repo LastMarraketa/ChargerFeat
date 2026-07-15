@@ -21,6 +21,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	animation_player.animation_finished.connect(_on_animation_finished)
 	
+	
 func _on_animation_finished(anim_name: StringName) -> void:
 	queue_free() 
 	# Al destruirse este nodo, el Player recibe la señal 'tree_exited' 
@@ -30,4 +31,4 @@ func _on_body_entered(body: Node2D) -> void:
 	# Si el cuerpo que entró tiene un componente de salud o un método para recibir daño
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		Debug.log("Ataque melee impactó a: " + body.name)
+		

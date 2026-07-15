@@ -9,6 +9,5 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	var player: Player = body as Player
 	if player:
-		
-		if player.velocity.length() >= 4000 and Game.full_charges >= full_charge_requirement:
+		if  player.just_full_dashed and Game.full_charges >= full_charge_requirement:
 			queue_free()

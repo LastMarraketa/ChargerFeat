@@ -70,7 +70,7 @@ var shield_cooldown_timer: Timer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/movement/playback"]
 @onready var pivot: Node2D = $Pivot
-@onready var jump_stream_player: AudioStreamPlayer = $JumpStreamPlayer
+
 @onready var slash_stream_player: AudioStreamPlayer = $SlashStreamPlayer
 @onready var dash_stream_player: AudioStreamPlayer = $DashStreamPlayer
 @onready var whoosh_stream_player: AudioStreamPlayer = $whooshStreamPlayer
@@ -89,9 +89,13 @@ var target_marker: Marker2D = null
 var full_dash_charging: bool = false
 var full_dash_hold_timer: float = 0.0
 var full_dash_meter_spent: float= 0.0
+var just_full_dashed: bool=false
 @onready var charge_stream_player: AudioStreamPlayer = $chargeStreamPlayer
 @onready var fullcharge_stream_player: AudioStreamPlayer = $fullchargeStreamPlayer
+@onready var escudo: AnimatedSprite2D = $escudo
 
+@onready var ground_jump_stream_player: AudioStreamPlayer = $GroundJumpStreamPlayer
+@onready var air_jump_stream_player: AudioStreamPlayer = $airJumpStreamPlayer
 
 
 
@@ -144,6 +148,7 @@ func _move(delta: float) -> void:
 	######################
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
+		
 	else:
 		# Si tocamos el suelo, recuperamos gas (impulso aereo)
 		gas = true
@@ -153,24 +158,27 @@ func _move(delta: float) -> void:
 	######################
 	if (is_on_floor() or not coyote_timer.is_stopped()) and Input.is_action_just_pressed("jump") and jump_timer.is_stopped():
 		jump_timer.start()
-		jump_stream_player.play()
+		ground_jump_stream_player.play()
 		
 	elif not is_on_floor() and Input.is_action_just_pressed("jump") and gas:
+		
+		air_jump_stream_player.play()
 		var move_input = Input.get_axis("move_left", "move_right")
-		
+		var vertical_input = Input.get_axis("move_up", "move_down")
+		var propulsion_dir = Vector2(move_input, vertical_input)
 		# Si estamos cayendo, cancelamos la velocidad vertical para que el impulso sea limpio
-		velocity.y = 0 
 		
-		if move_input != 0:
-			# Impulso diagonal/lateral: dirección del movimiento + un poco hacia arriba
-			velocity.x = move_input * propulsion
-			velocity.y = -jump_speed * 0.7 
+		
+		if propulsion_dir != Vector2.ZERO:
+			propulsion_dir = propulsion_dir.normalized()
+			velocity = propulsion_dir * propulsion
 		else:
-			# Impulso puramente vertical (como un doble salto fuerte)
+			# Sin ninguna dirección presionada: impulso puramente vertical hacia arriba
 			velocity.y = -propulsion
-			
-		gas = false # Gastamos el impulso aereo
-		Debug.log("¡Propulsión activada!")
+			velocity.x = 0
+		
+		gas = false
+		
 		
 	if Input.is_action_just_released("jump"):
 		jump_timer.stop()
@@ -325,6 +333,7 @@ func _execute_melee_attack() -> void:
 		return
 		
 	is_attacking_melee = true
+	gas=true
 	
 	# 1. Obtenemos la dirección exacta hacia el mouse
 	var mouse_pos = get_global_mouse_position()
@@ -359,6 +368,7 @@ func _execute_melee_attack() -> void:
 func _execute_dash_attack() -> void:
 	is_dashing_to_kill = true
 	hurtbox_component.set_deferred("monitoring", false)
+	pivot.modulate = Color(0.3, 0.7, 1.0, 0.7)
 	var mouse_dir = global_position.direction_to(get_global_mouse_position())
 	velocity = mouse_dir * 5000
 	dashtimer.start()
@@ -371,16 +381,22 @@ func _execute_dash_attack() -> void:
 	
 func _execute_full_dash_attack() -> void:
 	is_dashing_to_kill = true
+	just_full_dashed=true
 	hurtbox_component.set_deferred("monitoring", false)
+	pivot.modulate = Color(0.3, 0.7, 1.0, 0.7)
 	var mouse_dir = global_position.direction_to(get_global_mouse_position())
 	velocity = mouse_dir * 10000
 	dashtimer.start()
 	dash_particles.emitting = true
 	Game.charge = 0.0
 	get_tree().create_timer(0.1).timeout.connect(_reset_full_charges)
+	get_tree().create_timer(0.2).timeout.connect(_destroy_terrain_turn_off)
 	dash_ready = false
 	moving=false
 	fullcharge_stream_player.play()
+
+
+	
 
 func _check_full_dash_hold(delta: float) -> void:
 	if Input.is_action_pressed("full_dash") and not is_attacking_melee and dash_ready:
@@ -388,6 +404,13 @@ func _check_full_dash_hold(delta: float) -> void:
 		full_dash_hold_timer += delta
 		velocity = Vector2.ZERO
 		charge_particles.emitting = true
+		escudo.play("electric_shield")
+		escudo.visible = true
+		gas=true
+		
+		hurtbox_component.set_deferred("monitoring", false)
+		pivot.modulate = Color(0.3, 0.7, 1.0, 0.7)
+		health_component.health += 200 * delta
 		if not charge_stream_player.playing:
 			charge_stream_player.play()
 		move_and_slide()
@@ -397,19 +420,39 @@ func _check_full_dash_hold(delta: float) -> void:
 			full_dash_charging = false
 			full_dash_hold_timer = 0.0
 			charge_particles.emitting = false
+			escudo.stop()
+			escudo.visible = false
 			charge_stream_player.stop()
+			
 	else:
 		full_dash_charging = false
 		full_dash_hold_timer = 0.0
 		charge_particles.emitting = false
+		escudo.stop()
+		escudo.visible = false
 		charge_stream_player.stop()
+		hurtbox_component.set_deferred("monitoring", true)
+		pivot.modulate = Color(1.0, 1.0, 1.0, 1.0) 
+		
 	
 func _on_time_to_kill_timeout() -> void:
 	is_dashing_to_kill = false
 	velocity = Vector2.ZERO
 	hurtbox_component.set_deferred("monitoring", true)
+	pivot.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	dash_particles.emitting = false
 	dash_stream_player.stop()
+
+func _destroy_terrain_turn_off() -> void:
+	just_full_dashed=false
+
+func _reset_full_charges() -> void:
+	Game.full_charges = 0
+func _consume_one_charge() -> void:
+	if Game.full_charges > 0:
+		Game.full_charges -= 1
+	# si aún quedan pilas llenas, se puede volver a hacer dash sin esperar otra
+	dash_ready = Game.full_charges > 0
 	
 #################################################################################
 #################################################################################	
@@ -467,11 +510,3 @@ func _setup_level_ui() -> void:
 		new_canvas.add_child(game_over_instance)
 		var level_complete_instance = level_complete_scene.instantiate()
 		new_canvas.add_child(level_complete_instance)
-
-func _reset_full_charges() -> void:
-	Game.full_charges = 0
-func _consume_one_charge() -> void:
-	if Game.full_charges > 0:
-		Game.full_charges -= 1
-	# si aún quedan pilas llenas, se puede volver a hacer dash sin esperar otra
-	dash_ready = Game.full_charges > 0
