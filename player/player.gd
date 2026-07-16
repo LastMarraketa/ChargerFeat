@@ -254,6 +254,7 @@ func _move(delta: float) -> void:
 			
 	if not is_instance_valid(bala_viva):
 		target_marker = null
+		moving = false
 		#ammo = true
 	
 #################################################################################

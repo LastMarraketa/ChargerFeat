@@ -26,6 +26,7 @@ func _on_resume_pressed() -> void:
 
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
+	Game._reset_charger_to_level()
 	get_tree().reload_current_scene()
 
 

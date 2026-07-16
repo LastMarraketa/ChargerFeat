@@ -8,7 +8,6 @@ extends Enemy
 @onready var bullet_spawn: Marker2D = $"bullet spawn"
 @onready var spawn_marker: Marker2D = $"spawn marker"
 
-
 @export var enemy_bullet_scene: PackedScene
 @export var chasing_enemy_scene: PackedScene
 @export var spawn_interval: float = 4.0

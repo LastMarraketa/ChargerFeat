@@ -29,9 +29,7 @@ func _on_player_died() -> void:
 ## Despausa el árbol de escenas y recarga el nivel actual desde el inicio.
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
-	Game.charge = 0.0
-	Game.full_charges = 0
-	Game.full_charge_limit = 1
+	Game._reset_charger_to_level()
 	get_tree().reload_current_scene()
 
 ## Despausa el árbol de escenas y redirige al menú principal a través del gestor de niveles.

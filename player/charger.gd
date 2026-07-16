@@ -12,6 +12,7 @@ func _ready() -> void:
 	max_value = Game.max_charge
 	value = Game.charge
 	Game.charge_changed.connect(on_charge_changed)
+	Game.charger_tint_request.connect(on_charger_tint_request)
 	update_tint()
 	
 func on_charge_changed(new_charge: float, new_max_charge: float) -> void:
@@ -26,6 +27,9 @@ func on_charge_changed(new_charge: float, new_max_charge: float) -> void:
 		
 		update_tint()
 		full_charge.emit()
+		
+func on_charger_tint_request() -> void:
+	update_tint()
 		
 func update_tint() -> void:
 	if Game.full_charges == Game.full_charge_limit:

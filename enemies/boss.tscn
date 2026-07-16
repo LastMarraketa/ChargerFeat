@@ -250,7 +250,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svlwx"]
-size = Vector2(88, 110)
+size = Vector2(65.99999, 82.399994)
 
 [sub_resource type="Animation" id="Animation_3jkq5"]
 resource_name = "Attack"
@@ -533,7 +533,7 @@ states/idle/position = Vector2(509, 92)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_grk76")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f2d86"]
-graph_offset = Vector2(-613.1755, 68.06903)
+graph_offset = Vector2(-404.3521, 28.844284)
 nodes/idle/node = SubResource("AnimationNodeStateMachine_cshgs")
 nodes/idle/position = Vector2(-580, 260)
 node_connections = [&"output", 0, &"idle"]
@@ -588,7 +588,7 @@ frame_progress = 0.10711355
 speed_scale = 1.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=831594677]
-position = Vector2(0, -20)
+position = Vector2(3.500001, 35.999996)
 scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_svlwx")
 disabled = true
