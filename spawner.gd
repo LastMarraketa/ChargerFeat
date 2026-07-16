@@ -4,6 +4,7 @@ extends Node2D
 @export var spawn_radius: int = 100
 @onready var timer: Timer = $Timer
 @onready var detection_area: Area2D = $Area2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 var player = null
@@ -12,6 +13,7 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
+	sprite.play("default")
 	
 func _on_body_entered(body):
 	if body is Player:
