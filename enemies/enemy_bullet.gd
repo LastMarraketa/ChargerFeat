@@ -31,7 +31,7 @@ func _on_body_entered(body:Node2D)->void:
 		if body.shield_active:
 			body.absorb_bullet()
 		else:
-			Debug.log("impacto a jugador ")
+			pass
 			
 		queue_free()
 	elif body is not Enemy:
@@ -48,7 +48,7 @@ func _on_area_entered(area: Area2D) -> void:
 			# player.balas_destruidas += 1
 			Game.charge += 1
 			#Debug.log("enemigo volador destruido " + str(player.balas_destruidas))
-			Debug.log("enemigo volador destruido " + str(int(Game.charge)))
+			
 		
 		
 		queue_free()

@@ -194,7 +194,7 @@ func _move(delta: float) -> void:
 			#si se quiere que se pare en seco (eliminar momentum) cada vez que se teleporte 
 			#entonces descomentar lo de abajo ->>
 			#velocity = Vector2.ZERO                       
-			Debug.log("¡Teletransporte!")   
+			
 	
 	
 			
@@ -490,7 +490,7 @@ func _on_cooldown_timeout() -> void:
 func absorb_bullet() -> void:
 	if absorbed_bullets < max_absorbed_bullets:
 		absorbed_bullets += 1
-		Debug.log("Bala absorbida: " + str(absorbed_bullets) + "/" + str(max_absorbed_bullets))
+		
 	
 func _on_full_charge() -> void:
 	dash_ready = true

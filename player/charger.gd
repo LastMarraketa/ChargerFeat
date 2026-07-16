@@ -23,7 +23,7 @@ func on_charge_changed(new_charge: float, new_max_charge: float) -> void:
 			Game.charge = 0.0 #hay que hacer que se resetee la carga cuando se
 		# llega a una carga completa, pero sin que se resetee cada vez
 		# que se llame a esta función
-		Debug.log("Cargas completas actuales: "+str(Game.full_charges))
+		
 		update_tint()
 		full_charge.emit()
 		
