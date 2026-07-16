@@ -9,3 +9,4 @@ script = ExtResource("1_tr7pb")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=619054592]
 stream = ExtResource("2_alnp1")
 bus = &"Music"
+parameters/looping = true

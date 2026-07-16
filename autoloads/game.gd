@@ -5,6 +5,7 @@ signal player_died()
 signal level_completed()
 signal charge_changed(new_value, new_max)
 signal full_charges_changed(new_value)
+signal charger_tint_request()
 
 var charge: float = 0.0:
 	set = _set_charge
@@ -12,6 +13,7 @@ var max_charge: float = 6.0
 var full_charges: int = 0:
 	set = _set_full_charges
 var full_charge_limit: int = 1
+var level_start_full_charge_limit: int = 1
 
 var coins: int = 0:
 	set = set_coins
@@ -28,3 +30,16 @@ func _set_charge(new_value: float) -> void:
 func _set_full_charges(new_value: int) -> void:
 	full_charges = clamp(new_value, 0, full_charge_limit)
 	full_charges_changed.emit(full_charges)
+	charger_tint_request.emit()
+
+func _reset_charger_to_level() -> void:
+	full_charge_limit = level_start_full_charge_limit
+	full_charges = 0
+	charge = 0.0
+	
+func _reset_charger_to_start() -> void:
+	full_charge_limit = 1
+	level_start_full_charge_limit = 1
+	full_charges = 0
+	charge = 0.0
+	

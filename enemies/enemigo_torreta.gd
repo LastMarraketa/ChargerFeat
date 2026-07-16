@@ -52,6 +52,7 @@ func _spawn() -> void:
 func _on_time_to_kill_turret(body: Node2D) -> void:
 	if (body is Player) and ( body.is_dashing_to_kill == true ) :
 		Game.full_charge_limit += 1
+		Game.charger_tint_request.emit()
 		Debug.log("Nuevo límite de cargas completas: "+str(Game.full_charge_limit))
 		animation_tree["parameters/death/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		await animation_tree.animation_finished

@@ -8,6 +8,7 @@ extends Enemy
 @onready var bullet_spawn: Marker2D = $"bullet spawn"
 @onready var spawn_marker: Marker2D = $"spawn marker"
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var dash_kill_area: Area2D = $"DashKillArea"
 
 @export var enemy_bullet_scene: PackedScene
 @export var chasing_enemy_scene: PackedScene
@@ -23,7 +24,9 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_player_exited)
 	fire_timer.timeout.connect(_disparar)
 	spawn_timer.timeout.connect(_spawn_enemy)
-	health_component.died.connect(_on_died)
+	#FIX a la mala para que no muera con la lanza
+	#health_component.died.connect(_on_died)
+	dash_kill_area.body_entered.connect(_on_time_to_kill_boss)
 	
 	spawn_timer.wait_time = spawn_interval
 
@@ -76,3 +79,11 @@ func _spawn_enemy() -> void:
 
 func _on_died() -> void:
 	queue_free()
+
+func _on_time_to_kill_boss(body: Node2D) -> void:
+	if (body is Player) and ( body.is_dashing_to_kill == true ) :
+		Debug.log("JEFE DERROTADO")
+		#Falta conectar la animación cuando muere
+		#animation_tree["parameters/death/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		#await animation_tree.animation_finished
+		queue_free() 

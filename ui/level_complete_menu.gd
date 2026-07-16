@@ -39,16 +39,20 @@ func _on_level_completed() -> void:
 func _on_next_pressed() -> void:
 	get_tree().paused = false
 	if LevelManager.has_next_level():
+		Game.level_start_full_charge_limit = Game.full_charge_limit
 		LevelManager.next_level()
 	else:
+		Game._reset_charger_to_start()
 		LevelManager.credits()
 
 ## Despausa el árbol de escenas y recarga el nivel actual desde el inicio.
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
+	Game._reset_charger_to_level()
 	get_tree().reload_current_scene()
 
 ## Despausa el árbol de escenas y redirige al menú principal a través del gestor de niveles.
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
+	Game._reset_charger_to_start()
 	LevelManager.main_menu()

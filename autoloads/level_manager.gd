@@ -30,6 +30,7 @@ func has_next_level() -> bool:
 
 
 func main_menu() -> void:
+	Game._reset_charger_to_start()
 	get_tree().change_scene_to_packed(main_menu_scene)
 
 

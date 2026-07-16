@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="6_health"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svlwx"]
-size = Vector2(88, 110)
+size = Vector2(65.99999, 82.399994)
 
 [sub_resource type="Animation" id="Animation_3jkq5"]
 resource_name = "Attack"
@@ -291,7 +291,7 @@ states/idle/position = Vector2(509, 92)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_grk76")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f2d86"]
-graph_offset = Vector2(-613.1755, 68.06903)
+graph_offset = Vector2(-404.3521, 28.844284)
 nodes/idle/node = SubResource("AnimationNodeStateMachine_cshgs")
 nodes/idle/position = Vector2(-580, 260)
 node_connections = [&"output", 0, &"idle"]
@@ -300,7 +300,10 @@ node_connections = [&"output", 0, &"idle"]
 radius = 1200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
-size = Vector2(240, 300)
+size = Vector2(206, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(270, 312)
 
 [node name="Boss" type="CharacterBody2D" unique_id=1897147392]
 collision_layer = 4
@@ -318,7 +321,7 @@ hframes = 17
 vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=831594677]
-position = Vector2(0, -20)
+position = Vector2(3.500001, 35.999996)
 scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_svlwx")
 
@@ -360,5 +363,11 @@ script = ExtResource("5_hurtbox")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=223101133]
-position = Vector2(0, -20)
+position = Vector2(3, 33.5)
 shape = SubResource("RectangleShape2D_hurt")
+
+[node name="DashKillArea" type="Area2D" parent="." unique_id=989908089]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashKillArea" unique_id=1552082455]
+position = Vector2(0, 37)
+shape = SubResource("RectangleShape2D_g4v7s")
