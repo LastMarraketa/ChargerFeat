@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crfin475mvk1e"]
 
 [ext_resource type="Script" uid="uid://dvrvrwc3iu3lo" path="res://ui/credits.gd" id="1_ed0b0"]
+[ext_resource type="Texture2D" uid="uid://bo72dkfuulyj5" path="res://assets/sprites/bg3.png" id="2_0dkrt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ed0b0"]
 font_size = 160
@@ -13,6 +14,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ed0b0")
+
+[node name="Background" type="TextureRect" parent="." unique_id=123456789]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0dkrt")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=221850981]
 layout_mode = 1
@@ -39,6 +51,14 @@ by Antidote Studios
 Henry [rainbow]M[/rainbow]ora
 Marcelo [rainbow]S[/rainbow]epúlveda
 Sebastian [rainbow]B[/rainbow]enavides
+[/ul]
+
+[center][font_size=50]Colaboradores[/font_size][/center]
+
+[ul]
+Jesse Munguia - Animación y diseño de Skeleton Enemy
+David G - Diseño de las plataformas del mundo
+Sebastián Benavides - Diseño de menús
 [/ul]"
 scroll_active = false
 

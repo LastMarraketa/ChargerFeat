@@ -23,7 +23,8 @@ texture = ExtResource("2_0dkrt")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1311120978]
+[node name="MainMenuPanel" type="PanelContainer" parent="." unique_id=1311120978]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,47 +38,96 @@ offset_bottom = 81.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1815427697]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuPanel" unique_id=1815427697]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2087105921]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuPanel/MarginContainer" unique_id=2087105921]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1579247744]
+[node name="Label" type="Label" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=1579247744]
 layout_mode = 2
 theme_type_variation = &"Title"
 theme_override_font_sizes/font_size = 80
 text = "Charger feat"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=733980409]
+[node name="Label2" type="Label" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=733980409]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "finally titled :v"
 
-[node name="Demo" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1715431782]
+[node name="Demo" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=1715431782]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Play Demo"
 
-[node name="Start" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=516099098]
+[node name="Start" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=516099098]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Start"
 
-[node name="Settings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1918208766]
+[node name="Settings" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=1918208766]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 
-[node name="Credits" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=300963168]
+[node name="Credits" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=300963168]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Credits"
 
-[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=262957973]
+[node name="Quit" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=262957973]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=1311120980]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -81.5
+offset_right = 35.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel" unique_id=1815427699]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/MarginContainer" unique_id=2087105923]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=1579247746]
+layout_mode = 2
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=1579247747]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=1579247748]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SettingsBack" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=1579247749]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
