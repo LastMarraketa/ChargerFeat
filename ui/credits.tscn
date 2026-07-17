@@ -40,26 +40,86 @@ offset_bottom = 276.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[center][font_size=50]Fonts[/font_size][/center]
-
-[url = https://antidote-studios.itch.io/bold-pixel-sprite-font]Bold Pixel Font[/url]
-by Antidote Studios
-
-[center][font_size=50]MSBsoft[/font_size][/center]
+text = "[center][font_size=50]MSBsoft[/font_size][/center]
 
 [ul]
 Henry [rainbow]M[/rainbow]ora
 Marcelo [rainbow]S[/rainbow]epúlveda
-Sebastian [rainbow]B[/rainbow]enavides
+Sebastian [rainbow]B[/rainbow]enavides - Diseño de menús
 [/ul]
 
-[center][font_size=50]Colaboradores[/font_size][/center]
+[center][font_size=50]Fonts[/font_size][/center]
 
-[ul]
-Jesse Munguia - Animación y diseño de Skeleton Enemy
-David G - Diseño de las plataformas del mundo
-Sebastián Benavides - Diseño de menús
-[/ul]
+[url = https://antidote-studios.itch.io/bold-pixel-sprite-font]Bold Pixel Font[/url]
+Fuente para menús
+by Antidote Studios
+
+[center][font_size=50]Sprites[/font_size][/center]
+
+[url = https://pixelnauta.itch.io/pixel-dimensional-portal-32x32]Pixel Dimensional Portal 32x32[/url]
+Animación y diseño de Portales
+by Pixelnauta
+
+[url = https://codemanu.itch.io/vfx-free-pack]Free VFX Asset Pack[/url]
+VFX de Ataque Cargado Completo
+by CodeManu
+
+[url = https://xzany.itch.io/flying-demon-2d-pixel-art]Flying Demon 2D Pixel Art[/url]
+Animación y diseño de Flying Demon
+by Mattz Art
+
+[url = https://luizmelo.itch.io/huntress]Huntress[/url]
+Animación y diseño de Huntress
+by LuizMelo
+
+[url = https://frostwindz.itch.io/pixel-art-fantasy-animated-portal]Pixel Art Fantasy Animated Portal[/url]
+VFX de Jefe Final
+by FrostWindz
+
+[url = https://frostwindz.itch.io/pixel-art-skill-animations-lightning] Pixel Art VFX - Lightning[/url]
+VFX de Ataque Cargado
+by FrostWindz
+
+[url = https://frostwindz.itch.io/pixel-art-vfx-blood-mage-free-version]Pixel Art VFX - Blood Mage - FREE Version[/url]
+Animación y diseño de Enemy Bullet
+by FrostWindz
+
+[url = https://frostwindz.itch.io/pixel-art-vfx-necromancer-free-version]Pixel Art VFX - Necromancer - FREE Version[/url]
+VFX de Jefe Final
+by FrostWindz
+
+[url = https://matseb2611.itch.io/pixel-monsters-free-pack]Pixel Monsters Free Pack[/url]
+Animación y diseño de Flying Skull
+by Matthew Ashworth
+
+[url = https://szadiart.itch.io/pixel-fantasy-caves]Pixel Fantasy Caves[/url]
+Diseño de Background del mundo
+by Szadi art.
+
+[url = https://jesse-m.itch.io/skeleton-pack]Skeleton Sprite Pack[/url]
+Animación y diseño de Skeleton Enemy
+by Jesse Munguia
+
+[url = https://jasontomlee.itch.io/slashfx]Slash FX[/url]
+VFX de Melee Attack
+by jasontomlee
+
+[url = https://incolgames.itch.io/dungeon-platformer-tile-set-pixel-art]Dungeon Platformer Tile Set (Pixel Art)[/url]
+Diseño de las plataformas del mundo
+by David G
+
+[url = https://creativekind.itch.io/necromancer-free]Necromancer (Free)[/url]
+Animación y diseño de Minijefes y Jefe Final
+by CreativeKind
+
+[url = ][/url]
+Diseño de Background del Menú Principal
+by
+
+[center][font_size=50]Sonidos[/font_size][/center]
+
+[url = ][/url]
+by
 
 [center][font_size=50]***[/font_size][/center]"
 scroll_active = false

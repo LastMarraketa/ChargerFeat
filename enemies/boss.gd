@@ -51,6 +51,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _on_died() -> void:
+	Game.full_charge_limit += 2
+	Game.charger_tint_request.emit()
+	Game.update_destructible_terrain.emit()
 	fire_timer.stop()
 	spawn_timer.stop()
 	queue_free()
