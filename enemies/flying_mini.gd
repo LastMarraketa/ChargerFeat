@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var move_speed = 400.0
 @export var accel = 8.0
-@export var patrol_radius = 60.0
+@export var patrol_radius = 150.0
 @export var patrol_speed = 50.0
 @export var detection_radius: float = 1000.0
 
