@@ -250,3 +250,162 @@ speed = 100
 [node name="FlyingMini7" parent="." unique_id=2147465202 instance=ExtResource("16_87xub")]
 position = Vector2(7565, -951)
 detection_radius = 750.0
+
+[node name="Tuto1" type="RichTextLabel" parent="." unique_id=985632310]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -1275.0
+offset_top = -2267.0
+offset_right = -399.0
+offset_bottom = -2135.0
+bbcode_enabled = true
+text = "Usa las [color=orange]teclas A/D[/color] para [color=yellow]moverte[/color] hacia la izquierda/derecha.
+Usa la [color=orange]tecla SPACE[/color] para [color=yellow]saltar[/color]."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto3" type="RichTextLabel" parent="." unique_id=162445050]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -1254.0
+offset_top = -1323.0
+offset_right = -236.0
+offset_bottom = -895.0
+bbcode_enabled = true
+text = "Apunta con el mouse, y utiliza el [color=orange]Botón Derecho[/color] para utilizar tu [color=yellow]Lanza[/color] y derrotar a Enemigos Terrestres.
+
+Utiliza el [color=orange]Botón Izquierdo[/color] para ejecutar un [color=yellow]Slash Attack[/color] y eliminar Proyectiles y Calaveras."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto5" type="RichTextLabel" parent="." unique_id=299030171]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -3418.0
+offset_top = -1066.0
+offset_right = -2536.0
+offset_bottom = -889.0
+bbcode_enabled = true
+text = "Enemigos eliminados por tu Slash Attack se convertirán en energía para tu [color=yellow]Cargador[/color]."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto6" type="RichTextLabel" parent="." unique_id=1498804104]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -3644.0
+offset_top = -921.0
+offset_right = -2762.0
+offset_bottom = -744.0
+bbcode_enabled = true
+text = "Cuando este se encuentre completamente cargado, acumularás una [color=yellow]Carga Completa[/color]."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto7" type="RichTextLabel" parent="." unique_id=1278064299]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -3810.0
+offset_top = -290.0
+offset_right = -2601.0
+offset_bottom = -113.0
+bbcode_enabled = true
+text = "Apunta con el mouse, y presiona la [color=orange]tecla E[/color] con una [color=yellow]Carga Completa[/color] para ejecutar un [color=yellow]Dash Attack[/color] y eliminar a Enemigos Especiales. Esto Consumirá una Carga Completa."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto8" type="RichTextLabel" parent="." unique_id=1659837270]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -3220.0
+offset_top = 287.0
+offset_right = -2346.0
+offset_bottom = 464.0
+bbcode_enabled = true
+text = "Tu [color=yellow]Lanza[/color] se puede ensartar en el terreno!
+Utiliza la [color=orange]tecla Q[/color] para propulsarte hacia tu Lanza, o cancelar la acción."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto9" type="RichTextLabel" parent="." unique_id=929114290]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -4142.0
+offset_top = 1113.0
+offset_right = -3642.0
+offset_bottom = 1566.0
+bbcode_enabled = true
+text = "Usar la [color=orange]tecla SPACE[/color] en el aire te permite realizar un [color=yellow]Salto Aéreo[/color].
+
+Si te estás moviendo horizontalmente, el impulso será en esa dirección."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto10" type="RichTextLabel" parent="." unique_id=1195891886]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -1842.0
+offset_top = 919.0
+offset_right = -1094.0
+offset_bottom = 1355.0
+bbcode_enabled = true
+text = "Usa la [color=orange]tecla ESC[/color] para pausar el juego y abrir el [color=yellow]Menú de Pausa[/color], o salir de este y reanudar el juego.
+
+En el Menú de Pausa puedes [color=yellow]Reintentar[/color] el nivel, entrar al [color=yellow]Menú de Configuración[/color], o salir de la partida y volver al [color=yellow]Menú Principal[/color]."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto11" type="RichTextLabel" parent="." unique_id=1785610813]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = -1108.0
+offset_top = -164.0
+offset_right = 237.0
+offset_bottom = 196.0
+bbcode_enabled = true
+text = "Cuando tu [color=yellow]Cargador[/color] esté completamente lleno, mantén presionada la [color=orange]tecla R[/color] por 2 segundos para ejecutar un [color=cyan]Full Dash Attack[/color] en la dirección del Mouse.
+Este poderoso ataque consumirá todas tus [color=yellow]Cargas Completas[/color], pero en el proceso también restaurará tu [color=yellow]Salud[/color], y será una pieza importante durante el juego."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto12" type="RichTextLabel" parent="." unique_id=1747191187]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = 1508.0
+offset_top = -951.0
+offset_right = 2500.0
+offset_bottom = -724.0
+bbcode_enabled = true
+text = "Derrotar a un Minijefe aumentará el número de [color=yellow]Cargas Completas[/color] que puedes acumular.
+Con esto puedes usar [color=yellow]Dash Attacks[/color] de forma consecutiva!"
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto13" type="RichTextLabel" parent="." unique_id=341675506]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = 4058.0
+offset_top = -295.0
+offset_right = 5013.0
+offset_bottom = 91.0
+bbcode_enabled = true
+text = "Destruye [color=yellow]Terreno Destructible[/color] con un [color=cyan]Full Dash Attack[/color] y descubre nuevas áreas que explorar!
+
+Este terreno se torna verde cuando tu nivel de [color=yellow]Cargas Completas[/color] es lo suficientemente alto para destruirlo."
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tuto14" type="RichTextLabel" parent="." unique_id=911079842]
+z_index = 1
+custom_minimum_size = Vector2(500, 0)
+offset_left = 6162.0
+offset_top = -265.0
+offset_right = 7117.0
+offset_bottom = 6.0
+theme_override_font_sizes/normal_font_size = 67
+bbcode_enabled = true
+text = "[color=cyan]SUERTE!![/color]"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1

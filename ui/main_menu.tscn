@@ -55,6 +55,7 @@ horizontal_alignment = 1
 
 [node name="Demo" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=1715431782]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Play Demo"
 
