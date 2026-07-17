@@ -12,3 +12,4 @@ func _on_area_entered(area: Area2D) -> void:
 	if hitbox:
 		if health_component:
 			health_component.health -= hitbox.damage
+		hitbox.damage_dealt.emit()

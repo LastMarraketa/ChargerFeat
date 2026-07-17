@@ -4,17 +4,18 @@
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="2_xsfoe"]
 [ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="3_l4ld1"]
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="4_3mpfr"]
-[ext_resource type="Texture2D" uid="uid://b4q7fcm256tlf" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Idle.png" id="4_idle"]
-[ext_resource type="Texture2D" uid="uid://dj2hsrc71qmeu" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Walk.png" id="5_walk"]
+[ext_resource type="Texture2D" uid="uid://or3h4gblcjbh" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Idle.png" id="4_idle"]
+[ext_resource type="Texture2D" uid="uid://cvyu8qaskhsd" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Walk.png" id="5_walk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_07tka"]
-radius = 34.132095
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_68074"]
+radius = 37.0
+height = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07tka"]
-size = Vector2(72, 69)
+size = Vector2(104, 107)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t1x0"]
-size = Vector2(76, 71)
+size = Vector2(38, 86)
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -146,10 +147,12 @@ _data = {
 
 [node name="FloorEnemy" type="CharacterBody2D" unique_id=1615866232]
 script = ExtResource("2_h1smk")
+speed = 150
+acceleration = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1981859268]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_07tka")
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_68074")
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=308293288 node_paths=PackedStringArray("health_component")]
 collision_layer = 0
@@ -159,18 +162,8 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://d26yj0mh06tpn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=98891645]
-position = Vector2(0, -2.5)
+position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_07tka")
-
-[node name="HitboxComponent" type="Area2D" parent="." unique_id=1681966307]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("3_l4ld1")
-metadata/_custom_type_script = "uid://bng1gwg0xgpto"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=533011693]
-position = Vector2(0, -3.5)
-shape = SubResource("RectangleShape2D_3t1x0")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1758106683]
 
@@ -179,11 +172,21 @@ position = Vector2(11, -26)
 scale = Vector2(4, 4)
 texture = ExtResource("4_idle")
 hframes = 11
-frame = 0
 
 [node name="RayCast2D" type="RayCast2D" parent="Pivot" unique_id=295051641]
-position = Vector2(48, 17)
+position = Vector2(102, 17)
 target_position = Vector2(0, 30)
+
+[node name="HitboxComponent" type="Area2D" parent="Pivot" unique_id=1681966307]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_l4ld1")
+damage = 7
+metadata/_custom_type_script = "uid://bng1gwg0xgpto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitboxComponent" unique_id=533011693]
+position = Vector2(30, -11)
+shape = SubResource("RectangleShape2D_3t1x0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1956524116]
 
@@ -195,4 +198,4 @@ metadata/_custom_type_script = "uid://blnpvqimev7d0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1184744250]
 libraries/ = SubResource("AnimationLibrary_enemy")
-autoplay = "idle"
+autoplay = &"idle"

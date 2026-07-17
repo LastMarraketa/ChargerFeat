@@ -52,6 +52,7 @@ func _ready() -> void:
 	
 func _on_time_to_kill_turret(body: Node2D) -> void:
 	if (body is Player) and ( body.is_dashing_to_kill == true ):
+		fire_timer.stop()
 		animation_tree["parameters/death/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		await animation_tree.animation_finished
 		

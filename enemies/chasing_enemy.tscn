@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://cjs3r8p8ejsuq" path="res://enemies/chasing_enemy.gd" id="1_chasing"]
 [ext_resource type="Script" uid="uid://d26yj0mh06tpn" path="res://components/hurtbox_component.gd" id="2_xsfoe"]
 [ext_resource type="Script" uid="uid://bng1gwg0xgpto" path="res://components/hitbox_component.gd" id="3_l4ld1"]
-[ext_resource type="Texture2D" uid="uid://b4q7fcm256tlf" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Idle.png" id="4_idle"]
-[ext_resource type="Texture2D" uid="uid://dj2hsrc71qmeu" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Walk.png" id="5_walk"]
+[ext_resource type="Texture2D" uid="uid://or3h4gblcjbh" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Idle.png" id="4_idle"]
 [ext_resource type="Script" uid="uid://blnpvqimev7d0" path="res://components/health_component.gd" id="5_3mpfr"]
+[ext_resource type="Texture2D" uid="uid://cvyu8qaskhsd" path="res://assets/sprites/Skeleton Sprite Pack/Skeleton/Sprite Sheets/Skeleton Walk.png" id="5_walk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chasing"]
 radius = 34.132
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
-size = Vector2(72, 69)
+size = Vector2(106, 133)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
 size = Vector2(76, 71)
@@ -185,7 +185,6 @@ position = Vector2(11, -26)
 scale = Vector2(4, 4)
 texture = ExtResource("4_idle")
 hframes = 11
-frame = 0
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1280504186]
 collision_layer = 0
@@ -207,4 +206,4 @@ shape = SubResource("CircleShape2D_fhohw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1184744250]
 libraries/ = SubResource("AnimationLibrary_enemy")
-autoplay = "idle"
+autoplay = &"idle"

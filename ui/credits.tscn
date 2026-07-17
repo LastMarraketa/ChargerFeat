@@ -59,7 +59,9 @@ Sebastian [rainbow]B[/rainbow]enavides
 Jesse Munguia - Animación y diseño de Skeleton Enemy
 David G - Diseño de las plataformas del mundo
 Sebastián Benavides - Diseño de menús
-[/ul]"
+[/ul]
+
+[center][font_size=50]***[/font_size][/center]"
 scroll_active = false
 
 [node name="Label" type="Label" parent="." unique_id=1357079934]

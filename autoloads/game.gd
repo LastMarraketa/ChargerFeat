@@ -6,6 +6,7 @@ signal level_completed()
 signal charge_changed(new_value, new_max)
 signal full_charges_changed(new_value)
 signal charger_tint_request()
+signal update_destructible_terrain()
 
 var charge: float = 0.0:
 	set = _set_charge

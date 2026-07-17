@@ -51,6 +51,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _on_died() -> void:
+	fire_timer.stop()
+	spawn_timer.stop()
 	queue_free()
 	
 func _on_player_detected(body: Node2D) -> void:

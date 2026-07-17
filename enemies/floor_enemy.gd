@@ -2,9 +2,11 @@ extends Enemy
 
 @onready var ray_cast_2d: RayCast2D = $Pivot/RayCast2D
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var hitbox: HitboxComponent = $Pivot/HitboxComponent
 
 func _ready() -> void:
 	health_component.died.connect(_on_enemy_died)
+	hitbox.damage_dealt.connect(_on_damage_dealt)
 	speed = 500
 	acceleration = 2000
 
@@ -25,3 +27,6 @@ func _physics_process(delta: float) -> void:
 func _on_enemy_died() -> void:
 	queue_free()
 	Debug.log("murió enemigo :D")
+
+func _on_damage_dealt() -> void:
+	pivot.scale.x *= -1

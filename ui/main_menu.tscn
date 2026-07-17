@@ -53,11 +53,6 @@ theme_override_font_sizes/font_size = 80
 text = "Charger feat"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=733980409]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "finally titled :v"
-
 [node name="Demo" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer" unique_id=1715431782]
 unique_name_in_owner = true
 layout_mode = 2
@@ -122,7 +117,6 @@ horizontal_alignment = 1
 [node name="VolumeSlider" type="HSlider" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=1579247748]
 unique_name_in_owner = true
 layout_mode = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.05
 value = 1.0

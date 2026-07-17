@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var accel = 8.0
 @export var patrol_radius = 60.0
 @export var patrol_speed = 50.0
+@export var detection_radius: float = 1000.0
 
 enum State {PATROL, CHASE}
 var state: State = State.PATROL
@@ -15,6 +16,7 @@ var patrol_target: Vector2
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var detect_area: Area2D = $DetectionArea
+@onready var detect_area_c: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var pivot: Node2D = $Pivot
 @onready var sprite: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 @onready var health_component: HealthComponent = $HealthComponent
@@ -29,6 +31,9 @@ func _ready() -> void:
 	nav_agent.path_desired_distance = 8.0
 	nav_agent.target_desired_distance = 16.0
 	
+	var unique_area = detect_area_c.shape.duplicate()
+	detect_area_c.shape = unique_area
+	detect_area_c.shape.radius = detection_radius
 	detect_area.body_entered.connect(_on_body_entered)
 	detect_area.body_exited.connect(_on_body_exited)
 	time_to_kill_area_flyingmini.body_entered.connect(_on_time_to_kill_flyingmini)

@@ -28,6 +28,7 @@ func _on_time_to_kill_enemy_bullet(body: Node2D) -> void:
 func _on_body_entered(body:Node2D)->void:
 	if body is Player :
 		snuff_stream_player.play()
+		body.health_component.health -= 2
 		if body.shield_active:
 			body.absorb_bullet()
 		else:
