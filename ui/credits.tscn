@@ -43,9 +43,9 @@ bbcode_enabled = true
 text = "[center][font_size=50]MSBsoft[/font_size][/center]
 
 [ul]
-Henry [rainbow]M[/rainbow]ora
-Marcelo [rainbow]S[/rainbow]epúlveda
-Sebastian [rainbow]B[/rainbow]enavides - Diseño de menús
+Henry [rainbow]M[/rainbow]ora - Programación, mecánica principal
+Marcelo [rainbow]S[/rainbow]epúlveda - Programación, diseño de etapas
+Sebastian [rainbow]B[/rainbow]enavides - Programación, diseño de menús
 [/ul]
 
 [center][font_size=50]Fonts[/font_size][/center]
@@ -112,14 +112,15 @@ by David G
 Animación y diseño de Minijefes y Jefe Final
 by CreativeKind
 
-[url = ][/url]
-Diseño de Background del Menú Principal
-by
-
 [center][font_size=50]Sonidos[/font_size][/center]
 
-[url = ][/url]
-by
+[url = https://pixabay.com/sound-effects/gaming-victory-464016/]Gaming victory[/url]
+SFX nivel completo
+by EAGLAXLE
+
+[url = https://pixabay.com/sound-effects/film-special-effects-sword-slashing-6-382395/]sword_slashing (6)[/url]
+SFX Slash Attack
+by Yodguard
 
 [center][font_size=50]***[/font_size][/center]"
 scroll_active = false
